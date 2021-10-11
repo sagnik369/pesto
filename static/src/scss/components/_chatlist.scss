@@ -1,0 +1,73 @@
+
+.chat-list {
+    &-container {
+        @include centered(0%, 50%);
+        position: fixed;
+        padding: 0 0 1rem 0;
+        box-shadow: 0 0 5rem rgba(198, 198, 198, 0.5);
+        z-index: 0;
+        background: rgb(255, 255, 255);
+        width: 100%;
+        max-width: 50rem;
+        height: 92vh;
+        overflow: auto;
+    }
+
+    list-style-type: none;
+}
+
+
+.list-item {
+    font-size: 1.2rem;
+    margin: 3rem 1rem;
+    padding: 0.2rem 1.1rem;
+    border-radius: 6px;
+    max-height: 80vh;
+    overflow: auto;
+  
+    &:nth-of-type(3n-2) {
+        background: rgb(252, 221, 221);
+    }
+  
+    &:nth-of-type(3n-1) {
+        background: rgb(255, 164, 164);
+    }
+  
+    &:nth-of-type(3n) {
+        background: rgb(255, 74, 74);
+    }
+  
+    & > div > main > div {
+        overflow: auto;
+        max-height: 8rem;
+        width: 100%;
+        border: 1px solid rgba(97, 97, 97, 0.6);
+        border-radius: 5px;
+    }
+  
+    & img {
+        margin: 1.5vw;
+        width: 45%;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+  
+    & iframe {
+        @include centered(0%, 50%);
+        margin: 1.5rem 0;
+        width: 85%;
+        aspect-ratio: 16/10;
+        border-radius: 3px;
+    }
+  
+    & main {
+        margin: 0.6rem 0;
+    }
+  
+    & footer {
+        text-align: right;
+        font-size: 0.8rem;
+        margin: 3px;
+    }
+
+}

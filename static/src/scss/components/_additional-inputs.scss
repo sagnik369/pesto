@@ -1,0 +1,43 @@
+
+.additional-inputs {
+    &-container {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 2;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    @include centered(50%, 50%);
+    width: 95%;
+    max-width: 31rem;
+    height: 20rem;
+    background-color: ghostwhite;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    &-warning {
+        display: block;
+        width: 90%;
+        color: red;
+        font-size: 1rem;
+        margin: 0 1rem;
+    }
+}
+
+.image,
+.video {
+  width: 90%;
+  height: 3rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+  font-size: 1.1rem;
+  margin: 1rem;
+}

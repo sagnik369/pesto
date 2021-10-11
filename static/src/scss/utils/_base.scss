@@ -1,0 +1,25 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: $Lora;
+}
+
+body {
+  background: whitesmoke;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgb(164, 105, 219);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: white;
+}

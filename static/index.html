@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./src/css/styles.css" type="text/css" />
+    <link rel="icon" href="./src/logo/logo.png" type="x-icon/image" />
+    <title>&realine;</title>
+  </head>
+  <body>
+    <section id="username-container" class="username-container">
+      <div class="username">
+        <input
+          id="username-input"
+          class="username-input"
+          type="text"
+          placeholder="Enter your username"
+        />
+        <footer id="username-warning" class="username-warning">
+          <small>&#9888; Enter a username</small>
+        </footer>
+        <button id="username-btn" class="username-btn" type="button">
+          Yes done!
+        </button>
+      </div>
+    </section>
+
+    <div class="change-username-container">
+      <button type="button" id="change-username" class="change-username">
+        Change Username
+      </button>
+    </div>
+
+    <section id="chat-list-container" class="chat-list-container">
+      <ul id="chat-list" class="chat-list"></ul>
+    </section>
+
+    <section class="message-container">
+      <section
+        id="additional-inputs-container"
+        class="additional-inputs-container"
+      >
+        <div class="additional-inputs">
+          <input
+            id="image"
+            class="image"
+            type="text"
+            placeholder="Enter the image url here"
+          />
+          <input
+            id="video"
+            class="video"
+            type="text"
+            placeholder="Enter the YouTube video url here"
+          />
+          <footer class="additional-inputs-warning">
+            <small>&#9888; Only YouTube videos are avaliable</small>
+          </footer>
+          <button
+            type="button"
+            id="close-additional-inputs"
+            class="close-additional-inputs"
+          >
+            &Cross;
+          </button>
+        </div>
+      </section>
+      <input id="message" class="message" type="text" placeholder="Type here" />
+      <button type="button" class="send-btn" id="send-btn">Send</button>
+      <button
+        type="button"
+        id="show-additional-inputs"
+        class="show-additional-inputs"
+      >
+        &plus;
+      </button>
+    </section>
+
+    <!-- <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script> -->
+
+    <script src="https://js.pusher.com/4.0/pusher.min.js"></script>
+
+    <script src="./javascript/scripts.js"></script>
+  </body>
+</html>

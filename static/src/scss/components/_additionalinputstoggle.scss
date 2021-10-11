@@ -1,0 +1,33 @@
+.show-additional-inputs,
+.close-additional-inputs {
+  background: rgb(152, 141, 255);
+  border: none;
+  border-radius: 50%;
+  font-weight: 700;
+  position: absolute;
+  cursor: pointer;
+}
+
+.show-additional-inputs {
+    width: 5rem;
+    height: 5rem;
+    bottom: 4rem;
+    right: 1rem;
+    font-size: 4rem;
+
+    &:active {
+        background: rgb(101, 91, 190);
+    }
+}
+
+.close-additional-inputs {
+    width: 2.8rem;
+    height: 2.8rem;
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.8rem;
+
+    &:active {
+        background: rgb(101, 91, 190);
+    }
+}

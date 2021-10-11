@@ -1,0 +1,34 @@
+
+.message {
+    &-container {
+        display: flex;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        z-index: 0;
+        width: 100%;
+        height: 8vh;
+        min-height: 3rem;
+    }
+    
+    width: 80%;
+    background: rgb(240, 240, 240);
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+    padding: 0.5rem 1rem;
+    font-size: 1.1rem;
+}
+  
+  .send-btn {
+    width: 20%;
+    background: rgb(118, 245, 0);
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+    font-size: 1.4rem;
+    font-weight: 700;
+    cursor: pointer;
+
+    &:active {
+        background: rgb(103, 206, 0);
+    }
+}
