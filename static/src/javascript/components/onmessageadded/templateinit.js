@@ -1,3 +1,4 @@
+const $ = require("jquery");
 function templateInit() {
   //list-item initialized and declared
 

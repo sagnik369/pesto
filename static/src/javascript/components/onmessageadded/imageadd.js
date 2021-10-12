@@ -1,3 +1,4 @@
+const $ = require("jquery");
 function imageAdd() {
   //if image url is specified
 

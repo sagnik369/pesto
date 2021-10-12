@@ -1,3 +1,4 @@
+const $ = require("jquery");
 function ranWordArr() {
   //Random verbs
 

@@ -1,3 +1,4 @@
+const $ = require("jquery");
 function usernameInit() {
   //Sets the username for first time
 

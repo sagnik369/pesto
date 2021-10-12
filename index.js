@@ -38,7 +38,7 @@ app.post("/message", function (req, res) {
 });
 
 app.get("/", function (req, res) {
-  res.sendFile(__dirname + "/static/index.html");
+    res.sendFile(__dirname + "/static/index.html");
 });
 
 app.listen(process.env.HOST, () => console.log("sunte pacchi..."));

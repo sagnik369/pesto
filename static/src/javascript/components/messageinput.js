@@ -1,3 +1,4 @@
+const $ = require("jquery");
 function messageInput() {
   //additional inputs for image url and YouTube videos
 

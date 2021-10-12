@@ -5,10 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js",
-    
-    "bundle": "browserify ./src/public/javascript/scripts.js -o ./src/public/javascript/compiled.js",
-
-    "watch": "node-sass ./static/src/scss/main.scss ./static/src/css/styles.css -w",
+    "bundle": "browserify ./static/src/javascript/scripts.js -o ./static/src/javascript/bundled.js",
+    "watch:js": "watchify ./static/src/javascript/scripts.js -o ./static/src/javascript/bundled.js",
+    "watch:scss": "node-sass ./static/src/scss/main.scss ./static/src/css/styles.css",
     "autoprefix": "postcss --use autoprefixer -b 'last 10 versions' ./static/src/css/styles.css -o ./static/src/css/styles.prefix.css",
     "compress": "node-sass ./static/src/css/styles.prefix.css ./static/src/css/styles.min.css --output-style compressed"
   },

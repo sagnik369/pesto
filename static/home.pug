@@ -1,0 +1,35 @@
+doctype html
+head
+  meta(charset='utf-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  link(rel='stylesheet' href='./src/css/styles.css' type='text/css')
+  link(rel='icon' href='./src/logo/logo.png' type='x-icon/image')
+  title &Rscr;
+section#username-container.username-container
+  .username
+    input#username-input.username-input(type='text' placeholder='Enter your username')
+    footer#username-warning.username-warning
+      small &#x26A0; Enter a username
+    button#username-btn.username-btn(type='button')
+      | Yes done!
+.change-username-container
+  button#change-username.change-username(type='button')
+    | Change Username
+section#chat-list-container.chat-list-container
+  ul#chat-list.chat-list
+section.message-container
+  section#additional-inputs-container.additional-inputs-container
+    .additional-inputs
+      input#image.image(type='url' placeholder='Enter the image url here')
+      input#video.video(type='url' placeholder='Enter the YouTube video url here')
+      footer.additional-inputs-warning
+        small &#x26A0; Only YouTube videos are avaliable
+      button#close-additional-inputs.close-additional-inputs(type='button')
+        | &Cross;
+  input#message.message(type='text' placeholder='Type here')
+  button#send-btn.send-btn(type='button') Send
+  button#show-additional-inputs.show-additional-inputs(type='button')
+    | &amp;plus;
+// <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+script(src='https://js.pusher.com/4.0/pusher.min.js')
+script(src='./javascript/scripts.js')
