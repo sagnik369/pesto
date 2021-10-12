@@ -1,5 +1,7 @@
 const $ = require("jquery");
 function usernameInit() {
+  let username = "";
+
   //Sets the username for first time
 
   $("#username-btn").click(function () {

@@ -25,7 +25,7 @@ function postMessage() {
       message.image[0] !== "" ||
       message.video[0] !== ""
     )
-      $.post("http://192.168.0.102:3000/message", { message });
+      $.post("https://9ktto.sse.codesandbox.io/message", { message });
   });
 }
 
