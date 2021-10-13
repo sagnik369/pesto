@@ -24,6 +24,8 @@ function loadMessages() {
 
   let i = Math.floor(Math.random() * 14);
 
+  //gets the messages from the database
+
   $.get("https://9ktto.sse.codesandbox.io/get", function (res) {
     res.forEach((message) => {
       //list-item initialized and declared

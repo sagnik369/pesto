@@ -13,13 +13,13 @@ function postMessage() {
       video: $.trim($("#video").val()).split(" ")
     };
 
-    //Value set to null
+    //Value set to null when buttons are clicked
 
     $("#message").val("");
     $("#image").val("");
     $("#video").val("");
 
-    console.table(message);
+    // console.table(message);
 
     //checks the validity of the message if valid then is posted to the server
 

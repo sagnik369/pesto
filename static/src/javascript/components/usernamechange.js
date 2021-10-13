@@ -5,6 +5,9 @@ function usernameChange() {
   $("#change-username").click(function () {
     let username = JSON.parse(window.localStorage.getItem("user"));
     $("#username-container").show();
+
+    //displays the current username in the input field
+
     $("#username-input").val(username);
   });
 
