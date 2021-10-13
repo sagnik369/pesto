@@ -10886,13 +10886,107 @@ const $ = require("jquery");
 function loading() {
   //initializes the username with user from localStorage if avaliable
 
-  var username = JSON.parse(localStorage.getItem("user"));
+  var username = JSON.parse(window.localStorage.getItem("user"));
   if (username === null) $("#username-container").show();
 }
 
 module.exports = loading;
 
 },{"jquery":1}],3:[function(require,module,exports){
+const $ = require("jquery");
+
+function loadMessages() {
+  //Random verbs
+
+  let ranArr = [
+    "wrote",
+    "is wondering",
+    "pondered",
+    "suggests",
+    "is thinking",
+    "surprised you with",
+    "said",
+    "thinks",
+    "thought",
+    "is sharing",
+    "uttered",
+    "states",
+    "writes",
+    "utters"
+  ];
+
+  //Generates a random number
+
+  let i = Math.floor(Math.random() * 14);
+
+  $.get("https://9ktto.sse.codesandbox.io/get", function (res) {
+    res.forEach((message) => {
+      //list-item initialized and declared
+
+      let template = $("<li>").html(`<div>
+                                    <header>
+                                      <i>
+                                        ${message.user + " " + ranArr[i]}:
+                                      </i>
+                                    </header>
+                                    <main>
+                                      <div>
+                                        <h3>
+                                          "${message.text}"
+                                        </h3>
+                                      </div>
+                                    </main>
+                                    <footer>
+                                      <small>
+                                        on ${message.date} &#9773;
+                                      </small>
+                                    </footer>
+                                  </div>`);
+
+      template.addClass("list-item");
+
+      //Customize username according to the person whose device it is
+
+      if (message.user !== JSON.parse(window.localStorage.getItem("user")))
+        template.addClass("other-users");
+
+      //if image url is specified
+
+      if (message.image[0] !== "") {
+        message.image.forEach((el) => {
+          let image_temp = $("<img>")
+            .attr("src", el)
+            .attr(`onclick`, `window.open('${el}')`)
+            .attr("alt", "image");
+          template[0].children[0].children[1].append(image_temp[0]);
+        });
+      }
+
+      //if video url is specified
+
+      if (message.video[0] !== "") {
+        message.video.forEach((el) => {
+          let video_temp = $("<iframe>")
+            .attr("src", `https://www.youtube.com/embed/${el}`)
+            .attr("title", "an YouTube video")
+            .attr("allowfullscreen", true);
+          template[0].children[0].children[1].append(video_temp[0]);
+        });
+      }
+
+      //list-item appended
+
+      $("#chat-list").append(template[0]);
+      //Scrolled down to the bottom of the page when the messages load
+
+      $("#chat-list-container").scrollTop($("#chat-list").height());
+    });
+  });
+}
+
+module.exports = loadMessages;
+
+},{"jquery":1}],4:[function(require,module,exports){
 const $ = require("jquery");
 function messageInput() {
   //additional inputs for image url and YouTube videos
@@ -10908,7 +11002,7 @@ function messageInput() {
 
 module.exports = messageInput;
 
-},{"jquery":1}],4:[function(require,module,exports){
+},{"jquery":1}],5:[function(require,module,exports){
 const $ = require("jquery");
 function postMessage() {
   //onclick of send button values from input fields are worked upon
@@ -10916,7 +11010,7 @@ function postMessage() {
   $("#send-btn").click(function () {
     //Value from the input fields extracted
 
-    let username = JSON.parse(localStorage.getItem("user"));
+    let username = JSON.parse(window.localStorage.getItem("user"));
     const message = {
       user: username,
       text: $.trim($("#message").val()),
@@ -10927,8 +11021,11 @@ function postMessage() {
     //Value set to null
 
     $("#message").val("");
+    $("#image").val("");
+    $("#video").val("");
 
-    console.log(message);
+    console.table(message);
+
     //checks the validity of the message if valid then is posted to the server
 
     if (
@@ -10942,7 +11039,7 @@ function postMessage() {
 
 module.exports = postMessage;
 
-},{"jquery":1}],5:[function(require,module,exports){
+},{"jquery":1}],6:[function(require,module,exports){
 const $ = require("jquery");
 function toggleExtras() {
   //additional inputs for image url and YouTube videos
@@ -10958,13 +11055,13 @@ function toggleExtras() {
 
 module.exports = toggleExtras;
 
-},{"jquery":1}],6:[function(require,module,exports){
+},{"jquery":1}],7:[function(require,module,exports){
 const $ = require("jquery");
 function usernameChange() {
   //Changes the username
 
   $("#change-username").click(function () {
-    let username = JSON.parse(localStorage.getItem("user"));
+    let username = JSON.parse(window.localStorage.getItem("user"));
     $("#username-container").show();
     $("#username-input").val(username);
   });
@@ -10980,7 +11077,7 @@ function usernameChange() {
 
 module.exports = usernameChange;
 
-},{"jquery":1}],7:[function(require,module,exports){
+},{"jquery":1}],8:[function(require,module,exports){
 const $ = require("jquery");
 function usernameInit() {
   let username = "";
@@ -10997,20 +11094,21 @@ function usernameInit() {
     if (temp_username !== "") {
       $("#username-container").hide();
       username = temp_username;
-      localStorage.setItem("user", JSON.stringify(username));
+      window.localStorage.setItem("user", JSON.stringify(username));
     } else $("#username-warning").show();
   });
 }
 
 module.exports = usernameInit;
 
-},{"jquery":1}],8:[function(require,module,exports){
+},{"jquery":1}],9:[function(require,module,exports){
 const $ = require("jquery");
 const loading = require("./components/loading");
 const usernameInit = require("./components/usernameinit");
 const usernameChange = require("./components/usernamechange");
 const toggleExtras = require("./components/toggleextras");
 const messageInput = require("./components/messageinput");
+const loadMessages = require("./components/loadmessages");
 const postMessage = require("./components/postmessage");
 
 $(document).ready(function () {
@@ -11062,6 +11160,11 @@ $(document).ready(function () {
 
     template.addClass("list-item");
 
+    //Customize username according to the person whose device it is
+
+    if (message.user !== JSON.parse(window.localStorage.getItem("user")))
+      template.addClass("other-users");
+
     //if image url is specified
 
     if (message.image[0] !== "") {
@@ -11071,7 +11174,6 @@ $(document).ready(function () {
           .attr(`onclick`, `window.open('${el}')`)
           .attr("alt", "image");
         template[0].children[0].children[1].append(image_temp[0]);
-        // console.log(template[0].children[0].children[1]);
       });
     }
 
@@ -11084,7 +11186,6 @@ $(document).ready(function () {
           .attr("title", "an YouTube video")
           .attr("allowfullscreen", true);
         template[0].children[0].children[1].append(video_temp[0]);
-        // console.log(template[0].children[0].children[1]);
       });
     }
 
@@ -11096,6 +11197,10 @@ $(document).ready(function () {
 
     $("#chat-list-container").scrollTop($("#chat-list").height());
   }
+
+  /*///////////////////////////////////////////
+  Execution of the main script starts from here
+  ///////////////////////////////////////////*/
 
   //Initialized pusher object with server key and cluster
 
@@ -11117,7 +11222,9 @@ $(document).ready(function () {
 
   messageInput();
 
+  loadMessages();
+
   postMessage();
 });
 
-},{"./components/loading":2,"./components/messageinput":3,"./components/postmessage":4,"./components/toggleextras":5,"./components/usernamechange":6,"./components/usernameinit":7,"jquery":1}]},{},[8]);
+},{"./components/loading":2,"./components/loadmessages":3,"./components/messageinput":4,"./components/postmessage":5,"./components/toggleextras":6,"./components/usernamechange":7,"./components/usernameinit":8,"jquery":1}]},{},[9]);

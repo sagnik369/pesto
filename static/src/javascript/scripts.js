@@ -4,6 +4,7 @@ const usernameInit = require("./components/usernameinit");
 const usernameChange = require("./components/usernamechange");
 const toggleExtras = require("./components/toggleextras");
 const messageInput = require("./components/messageinput");
+const loadMessages = require("./components/loadmessages");
 const postMessage = require("./components/postmessage");
 
 $(document).ready(function () {
@@ -55,6 +56,11 @@ $(document).ready(function () {
 
     template.addClass("list-item");
 
+    //Customize username according to the person whose device it is
+
+    if (message.user !== JSON.parse(window.localStorage.getItem("user")))
+      template.addClass("other-users");
+
     //if image url is specified
 
     if (message.image[0] !== "") {
@@ -64,7 +70,6 @@ $(document).ready(function () {
           .attr(`onclick`, `window.open('${el}')`)
           .attr("alt", "image");
         template[0].children[0].children[1].append(image_temp[0]);
-        // console.log(template[0].children[0].children[1]);
       });
     }
 
@@ -77,7 +82,6 @@ $(document).ready(function () {
           .attr("title", "an YouTube video")
           .attr("allowfullscreen", true);
         template[0].children[0].children[1].append(video_temp[0]);
-        // console.log(template[0].children[0].children[1]);
       });
     }
 
@@ -89,6 +93,10 @@ $(document).ready(function () {
 
     $("#chat-list-container").scrollTop($("#chat-list").height());
   }
+
+  /*///////////////////////////////////////////
+  Execution of the main script starts from here
+  ///////////////////////////////////////////*/
 
   //Initialized pusher object with server key and cluster
 
@@ -109,6 +117,8 @@ $(document).ready(function () {
   toggleExtras();
 
   messageInput();
+
+  loadMessages();
 
   postMessage();
 });

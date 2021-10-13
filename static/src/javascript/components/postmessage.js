@@ -5,7 +5,7 @@ function postMessage() {
   $("#send-btn").click(function () {
     //Value from the input fields extracted
 
-    let username = JSON.parse(localStorage.getItem("user"));
+    let username = JSON.parse(window.localStorage.getItem("user"));
     const message = {
       user: username,
       text: $.trim($("#message").val()),
@@ -16,8 +16,11 @@ function postMessage() {
     //Value set to null
 
     $("#message").val("");
+    $("#image").val("");
+    $("#video").val("");
 
-    console.log(message);
+    console.table(message);
+
     //checks the validity of the message if valid then is posted to the server
 
     if (

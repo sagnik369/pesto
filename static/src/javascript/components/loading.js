@@ -2,7 +2,7 @@ const $ = require("jquery");
 function loading() {
   //initializes the username with user from localStorage if avaliable
 
-  var username = JSON.parse(localStorage.getItem("user"));
+  var username = JSON.parse(window.localStorage.getItem("user"));
   if (username === null) $("#username-container").show();
 }
 

@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,700;1,400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;0,700;1,400&display=swap");
 * {
   margin: 0;
   padding: 0;
@@ -42,7 +42,8 @@ body {
     z-index: 2;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.5); }
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px); }
   .username-input {
     width: 90%;
     height: 3rem;
@@ -135,9 +136,9 @@ body {
     left: 50%;
     transform: translate(-50%, 0%);
     position: fixed;
-    padding: 0 0 1rem 0;
     box-shadow: 0 0 5rem rgba(198, 198, 198, 0.5);
     z-index: 0;
+    padding: 0 0 1.5rem 0;
     background: white;
     width: 100%;
     max-width: 50rem;
@@ -146,17 +147,14 @@ body {
 
 .list-item {
   font-size: 1.2rem;
-  margin: 3rem 1rem;
+  margin: 3rem auto;
   padding: 0.2rem 1.1rem;
   border-radius: 6px;
   max-height: 80vh;
-  overflow: auto; }
-  .list-item:nth-of-type(3n-2) {
-    background: #fcdddd; }
-  .list-item:nth-of-type(3n-1) {
-    background: #ffa4a4; }
-  .list-item:nth-of-type(3n) {
-    background: #ff4a4a; }
+  overflow: auto;
+  background: #fcdddd;
+  width: 80%;
+  transform: translateX(-0.5rem) scale(1.05); }
   .list-item > div > main > div {
     overflow: auto;
     max-height: 8rem;
@@ -183,6 +181,13 @@ body {
     text-align: right;
     font-size: 0.8rem;
     margin: 3px; }
+
+.other-users {
+  background: #df6f6f;
+  text-align: right;
+  transform: translateX(0.5rem) scale(0.95); }
+  .other-users footer {
+    text-align: left; }
 
 .message {
   width: 80%;

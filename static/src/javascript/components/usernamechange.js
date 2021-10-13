@@ -3,7 +3,7 @@ function usernameChange() {
   //Changes the username
 
   $("#change-username").click(function () {
-    let username = JSON.parse(localStorage.getItem("user"));
+    let username = JSON.parse(window.localStorage.getItem("user"));
     $("#username-container").show();
     $("#username-input").val(username);
   });

@@ -14,7 +14,7 @@ function usernameInit() {
     if (temp_username !== "") {
       $("#username-container").hide();
       username = temp_username;
-      localStorage.setItem("user", JSON.stringify(username));
+      window.localStorage.setItem("user", JSON.stringify(username));
     } else $("#username-warning").show();
   });
 }
