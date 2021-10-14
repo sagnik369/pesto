@@ -1,4 +1,5 @@
 const $ = require("jquery");
+
 function usernameChange() {
   //Changes the username
 

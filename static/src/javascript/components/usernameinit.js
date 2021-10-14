@@ -1,4 +1,5 @@
 const $ = require("jquery");
+
 function usernameInit() {
   let username = "";
 

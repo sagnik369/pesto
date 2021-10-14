@@ -1,4 +1,5 @@
 const $ = require("jquery");
+
 function loading() {
   //initializes the username with user from localStorage if avaliable
 

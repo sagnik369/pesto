@@ -10883,6 +10883,7 @@ return jQuery;
 
 },{}],2:[function(require,module,exports){
 const $ = require("jquery");
+
 function loading() {
   //initializes the username with user from localStorage if avaliable
 
@@ -10918,6 +10919,8 @@ function loadMessages() {
   //Generates a random number
 
   let i = Math.floor(Math.random() * 14);
+
+  //gets the messages from the database
 
   $.get("https://9ktto.sse.codesandbox.io/get", function (res) {
     res.forEach((message) => {
@@ -10988,6 +10991,7 @@ module.exports = loadMessages;
 
 },{"jquery":1}],4:[function(require,module,exports){
 const $ = require("jquery");
+
 function messageInput() {
   //additional inputs for image url and YouTube videos
 
@@ -11004,10 +11008,15 @@ module.exports = messageInput;
 
 },{"jquery":1}],5:[function(require,module,exports){
 const $ = require("jquery");
+
 function postMessage() {
   //onclick of send button values from input fields are worked upon
 
   $("#send-btn").click(function () {
+    //Closes the additional-inputs if open
+
+    $("#additional-inputs-container").hide();
+
     //Value from the input fields extracted
 
     let username = JSON.parse(window.localStorage.getItem("user"));
@@ -11018,13 +11027,7 @@ function postMessage() {
       video: $.trim($("#video").val()).split(" ")
     };
 
-    //Value set to null
-
-    $("#message").val("");
-    $("#image").val("");
-    $("#video").val("");
-
-    console.table(message);
+    // console.table(message);
 
     //checks the validity of the message if valid then is posted to the server
 
@@ -11034,6 +11037,46 @@ function postMessage() {
       message.video[0] !== ""
     )
       $.post("https://9ktto.sse.codesandbox.io/message", { message });
+
+    //When files are sent from the local Storage
+
+    let inputFiles = $("#file-data");
+
+    //FormData object is used to handle the HTML form data when sent in the background
+
+    let fd = new FormData();
+
+    //flag variable
+
+    let i = inputFiles[0].files.length;
+
+    //a while() loop is run and each file (files[i]) is sent to the API
+
+    while (i > 0) {
+      fd.append("file", inputFiles[0].files[i - 1]);
+
+      //sender loaded and color set to orangered
+
+      $("#sending-file").css("background", "red");
+
+      fetch("https://api.anonfiles.com/upload?token=3ba8122b5e3c9048", {
+        mode: "no-cors",
+        method: "POST",
+        body: fd
+      }).then((res) =>
+        //sender background set to transparent
+
+        $("#sending-file").css("background", "transparent")
+      );
+      i--;
+    }
+
+    //Value set to null when buttons are clicked
+
+    $("#message").val("");
+    $("#image").val("");
+    $("#video").val("");
+    $("#file-data").val("");
   });
 }
 
@@ -11041,6 +11084,7 @@ module.exports = postMessage;
 
 },{"jquery":1}],6:[function(require,module,exports){
 const $ = require("jquery");
+
 function toggleExtras() {
   //additional inputs for image url and YouTube videos
 
@@ -11057,12 +11101,16 @@ module.exports = toggleExtras;
 
 },{"jquery":1}],7:[function(require,module,exports){
 const $ = require("jquery");
+
 function usernameChange() {
   //Changes the username
 
   $("#change-username").click(function () {
     let username = JSON.parse(window.localStorage.getItem("user"));
     $("#username-container").show();
+
+    //displays the current username in the input field
+
     $("#username-input").val(username);
   });
 
@@ -11079,6 +11127,7 @@ module.exports = usernameChange;
 
 },{"jquery":1}],8:[function(require,module,exports){
 const $ = require("jquery");
+
 function usernameInit() {
   let username = "";
 

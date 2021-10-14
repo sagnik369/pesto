@@ -1,4 +1,5 @@
 const $ = require("jquery");
+
 function toggleExtras() {
   //additional inputs for image url and YouTube videos
 

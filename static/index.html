@@ -10,6 +10,7 @@
     <title>&realine;</title>
   </head>
   <body>
+    <div id="sending-file" class="sending-file"></div>
     <section id="username-container" class="username-container">
       <div class="username">
         <input
@@ -43,20 +44,36 @@
         class="additional-inputs-container"
       >
         <div class="additional-inputs">
+          <label class="additional-inputs-labels" for="image"
+            >Enter the image URLs:</label
+          >
           <input
             id="image"
             class="image"
             type="url"
-            placeholder="Enter the image url here"
+            placeholder="Add a space between the URLs!"
           />
+          <label class="additional-inputs-labels" for="video"
+            >Enter the Youtube video URLs:</label
+          >
           <input
             id="video"
             class="video"
             type="url"
-            placeholder="Enter the YouTube video url here"
+            placeholder="Add a space between the URLs!"
           />
           <footer class="additional-inputs-warning">
             <small>&#9888; Only YouTube videos are avaliable</small>
+          </footer>
+          <input
+            type="file"
+            name="file"
+            id="file-data"
+            class="file-data"
+            multiple
+          />
+          <footer class="additional-inputs-warning">
+            <small>&#9888; These files are personally sent to me only</small>
           </footer>
           <button
             type="button"

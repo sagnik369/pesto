@@ -37,6 +37,7 @@ Routes set
 
 app.get("/", function (req, res) {
   res.sendFile(__dirname + "/static/index.html");
+  res.end();
 });
 
 //Path for getting the messages from the database
@@ -78,6 +79,7 @@ app.post("/message", function (req, res) {
   console.log(message);
   pusher.trigger("chat-room", "message-added", message);
   res.sendStatus(200);
+  res.end();
 });
 
 //Path for deleting all the data from the database
@@ -88,6 +90,8 @@ app.get("/promotione", function (req, res) {
     await collection.drop();
     client.close();
   });
+  res.send("OK");
+  res.end();
 });
 
 app.listen(process.env.HOST, () => console.log("sunte pacchi..."));
