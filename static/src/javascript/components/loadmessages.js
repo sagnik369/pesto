@@ -26,7 +26,7 @@ function loadMessages() {
 
   //gets the messages from the database
 
-  $.get("https://9ktto.sse.codesandbox.io/get", function (res) {
+  $.get("/get", function (res) {
     res.forEach((message) => {
       //list-item initialized and declared
 

@@ -18,13 +18,18 @@
       font-size: 1.5rem;
     }
     .additional-inputs {
-      height: 16.5rem;
+      height: 20.5rem;
+
+      &-labels, &-warning {
+        margin: .5rem;
+        font-size: .9rem;
+      }
     }
     .username-input,
     .image,
     .video {
-      height: 2.5rem;
-      margin: 0.8rem;
+      height: 2rem;
+      margin: 0.6rem;
       font-size: 0.85rem;
     }
     .sending-file {

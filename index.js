@@ -55,7 +55,7 @@ app.get("/get", function (req, res) {
 //Path for posting a message
 
 app.post("/message", function (req, res) {
-  //Extracts the Youtube video's path
+  //Extracts the video's path
 
   req.body.message.video.forEach((el, ind, ar) => {
     if (el.substr(0, 19) === "https://www.youtube") ar[ind] = el.substr(32, 11);
@@ -94,4 +94,4 @@ app.get("/promotione", function (req, res) {
   res.end();
 });
 
-app.listen(process.env.HOST, () => console.log("sunte pacchi..."));
+app.listen(process.env.PORT || 3000, () => console.log("sunte pacchi..."));

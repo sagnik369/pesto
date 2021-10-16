@@ -21,7 +21,7 @@
   
   .send-btn {
     width: 20%;
-    background: rgb(118, 245, 0);
+    background: rgb(41, 218, 135);
     border: 1px solid rgba(0, 0, 0, 0.3);
     border-radius: 4px;
     font-size: 1.4rem;
@@ -30,6 +30,6 @@
     z-index: 2;
 
     &:active {
-        background: rgb(103, 206, 0);
+        background: rgb(36, 194, 120);
     }
 }

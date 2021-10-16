@@ -10922,7 +10922,7 @@ function loadMessages() {
 
   //gets the messages from the database
 
-  $.get("https://9ktto.sse.codesandbox.io/get", function (res) {
+  $.get("/get", function (res) {
     res.forEach((message) => {
       //list-item initialized and declared
 
@@ -11036,7 +11036,7 @@ function postMessage() {
       message.image[0] !== "" ||
       message.video[0] !== ""
     )
-      $.post("https://9ktto.sse.codesandbox.io/message", { message });
+      $.post("/message", { message });
 
     //When files are sent from the local Storage
 

@@ -27,7 +27,7 @@ function postMessage() {
       message.image[0] !== "" ||
       message.video[0] !== ""
     )
-      $.post("https://9ktto.sse.codesandbox.io/message", { message });
+      $.post("/message", { message });
 
     //When files are sent from the local Storage
 
