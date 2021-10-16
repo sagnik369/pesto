@@ -11291,15 +11291,16 @@ $(document).ready(function () {
 
       i = Math.floor(Math.random() * 14);
 
-      //when an user types his message is show on the list
-  
-      $("#typing").html(`You are typing...`);
-    }
-
-    else
-      //when an user types his message is show on the list
+      //when an user types his message it is show on the list
   
       $("#typing").html(`${ username } ${ ranArr[i] }...`);
+    }
+    
+    else
+      //when an you type a message it is show on the list
+
+      $("#typing").html(`You are typing...`);
+    
 
 
 
