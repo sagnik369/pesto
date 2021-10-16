@@ -4,7 +4,7 @@
   "description": "a simple real time chat application",
   "main": "index.js",
   "scripts": {
-    "start": "",
+    "start": "node index.js",
 
     "bundle:js": "browserify ./static/src/javascript/scripts.js -o ./static/src/javascript/bundled.js",
     "watch:js": "watchify ./static/src/javascript/scripts.js -o ./static/src/javascript/bundled.js",
