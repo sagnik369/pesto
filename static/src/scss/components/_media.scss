@@ -33,8 +33,7 @@
       font-size: 0.85rem;
     }
     .sending-file {
-      top: .7rem;
-      left: .7rem;
+      left: .5rem;
     }
     .message {
       width: calc(100% - 5rem);
@@ -42,6 +41,12 @@
     .send-btn {
       width: 5rem;
       font-size: 1.1rem;
+    }
+    
+    .typing {
+      left: .5rem;
+      padding: .1rem .2rem;
+      font-size: .9rem;
     }
     .list-item iframe {
       aspect-ratio: 16/12;

@@ -8,29 +8,39 @@ const loadMessages = require("./components/loadmessages");
 const postMessage = require("./components/postmessage");
 
 $(document).ready(function () {
+
+  //username is fetched from localStorage
+
+  let user = JSON.parse(window.localStorage.getItem("user"));
+
+  //Random verbs
+
+  let ranArr = [
+    "wrote",
+    "is wondering",
+    "pondered",
+    "suggests",
+    "is thinking",
+    "surprised you with",
+    "said",
+    "thinks",
+    "thought",
+    "is sharing",
+    "uttered",
+    "states",
+    "writes",
+    "utters"
+  ];
+
+  let i = 0;
+
+  //When a message is emmited then this function is called
+
   function onMessageAdded(message) {
-    //Random verbs
-
-    let ranArr = [
-      "wrote",
-      "is wondering",
-      "pondered",
-      "suggests",
-      "is thinking",
-      "surprised you with",
-      "said",
-      "thinks",
-      "thought",
-      "is sharing",
-      "uttered",
-      "states",
-      "writes",
-      "utters"
-    ];
-
+    
     //Generates a random number
 
-    let i = Math.floor(Math.random() * 14);
+    i = Math.floor(Math.random() * 14);
 
     //list-item initialized and declared
 
@@ -58,7 +68,7 @@ $(document).ready(function () {
 
     //Customize username according to the person whose device it is
 
-    if (message.user !== JSON.parse(window.localStorage.getItem("user")))
+    if (message.user !== user)
       template.addClass("other-users");
 
     //if image url is specified
@@ -94,6 +104,39 @@ $(document).ready(function () {
     $("#chat-list-container").scrollTop($("#chat-list").height());
   }
 
+  
+  //Typing indicator
+
+
+  function onPersonTyping(username) {
+
+    if(user !== username) {
+      //Generates a random number
+
+      i = Math.floor(Math.random() * 14);
+
+      //when an user types his message is show on the list
+  
+      $("#typing").html(`You are typing...`);
+    }
+
+    else
+      //when an user types his message is show on the list
+  
+      $("#typing").html(`${ username } ${ ranArr[i] }...`);
+
+
+
+    //makes the list visible for a brief moment, then makes it dissappear and clears it's html content too
+
+    $("#typing").css({ "opacity": ".8" });
+    setTimeout(() => {
+      $("#typing").css({ "opacity": "0" });
+      $("#typing").html('');
+    }, 3500);
+  }
+
+
   /*///////////////////////////////////////////
   Execution of the main script starts from here
   ///////////////////////////////////////////*/
@@ -106,7 +149,10 @@ $(document).ready(function () {
 
   //Subscribed to channel and if the event in bind() occurs, then the callback gets executed
 
-  pusher.subscribe("chat-room").bind("message-added", onMessageAdded);
+  const channel = pusher.subscribe("chat-room");
+  channel.bind("message-added", onMessageAdded);
+  channel.bind("person-typing", onPersonTyping);
+
 
   loading();
 

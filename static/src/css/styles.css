@@ -3,8 +3,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "lora", sans-serif;
-  transition: all .3s; }
+  font-family: "lora", sans-serif; }
 
 body {
   background: whitesmoke; }
@@ -19,6 +18,9 @@ body {
 
 ::-webkit-scrollbar-track {
   background: white; }
+
+li {
+  list-style-type: none; }
 
 .username {
   position: relative;
@@ -119,7 +121,7 @@ body {
 
 .sending-file {
   position: fixed;
-  top: 1.2rem;
+  top: 3.2rem;
   left: 1.2rem;
   z-index: 5;
   background: transparent;
@@ -165,22 +167,20 @@ body {
   .change-username:active {
     background: #1a01bd; }
 
-.chat-list {
-  list-style-type: none; }
-  .chat-list-container {
-    position: relative;
-    top: 0%;
-    left: 50%;
-    transform: translate(-50%, 0%);
-    position: fixed;
-    box-shadow: 0 0 5rem rgba(198, 198, 198, 0.5);
-    z-index: 0;
-    padding: 0 0 1.5rem 0;
-    background: white;
-    width: 100%;
-    max-width: 50rem;
-    height: 92vh;
-    overflow: auto; }
+.chat-list-container {
+  position: relative;
+  top: 0%;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  position: fixed;
+  box-shadow: 0 0 5rem rgba(198, 198, 198, 0.5);
+  z-index: 0;
+  padding: 0 0 1.5rem 0;
+  background: white;
+  width: 100%;
+  max-width: 50rem;
+  height: 92vh;
+  overflow: auto; }
 
 .list-item {
   font-size: 1.2rem;
@@ -255,6 +255,17 @@ body {
   .send-btn:active {
     background: #24c278; }
 
+.typing {
+  position: fixed;
+  top: .5rem;
+  left: 1.2rem;
+  z-index: 5;
+  padding: 1.1rem 1rem;
+  background: whitesmoke;
+  opacity: 0;
+  border-radius: 3px;
+  font-size: 1.3rem; }
+
 .show-additional-inputs,
 .close-additional-inputs {
   background: #988dff;
@@ -310,13 +321,16 @@ body {
     margin: 0.6rem;
     font-size: 0.85rem; }
   .sending-file {
-    top: .7rem;
-    left: .7rem; }
+    left: .5rem; }
   .message {
     width: calc(100% - 5rem); }
   .send-btn {
     width: 5rem;
     font-size: 1.1rem; }
+  .typing {
+    left: .5rem;
+    padding: .1rem .2rem;
+    font-size: .9rem; }
   .list-item iframe {
     aspect-ratio: 16/12;
     width: 100%;

@@ -52,9 +52,20 @@ app.get("/get", function (req, res) {
   });
 });
 
+//Typing indicator route
+
+app.post("/typing", function (req, res) {
+  var username = req.body.username;
+
+  pusher.trigger("chat-room", "person-typing", username);
+  res.sendStatus(200);
+  res.end();
+});
+
 //Path for posting a message
 
 app.post("/message", function (req, res) {
+
   //Extracts the video's path
 
   req.body.message.video.forEach((el, ind, ar) => {
@@ -76,7 +87,6 @@ app.post("/message", function (req, res) {
     client.close();
   });
 
-  console.log(message);
   pusher.trigger("chat-room", "message-added", message);
   res.sendStatus(200);
   res.end();
