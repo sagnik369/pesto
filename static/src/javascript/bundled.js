@@ -11085,7 +11085,7 @@ function postMessage() {
 
         fd.append("file", inputFiles[0].files[i - 1]);
 
-        //sender loaded and color set to orangered
+        //sender loaded and color set to red
 
         $("#sending-file").css({ "background": "red" });
 
@@ -11219,6 +11219,10 @@ $(document).ready(function () {
 
   let user = JSON.parse(window.localStorage.getItem("user"));
 
+  //When a user comes online then this API sends data to the backend
+
+  $.post("/online", { user });
+
   //Random verbs
 
   let ranArr = [
@@ -11349,6 +11353,29 @@ $(document).ready(function () {
 
 
 
+  //Gets data from the backend when a user comes online
+  
+  function onPersonOnline(username) {
+
+    
+    // let flag = 0;
+    
+    // for(let i=0; i<$("#online").length; i++) {
+    //   if($("#online")[0].children[i].innerHTML === `${ username } is online!`) {
+    //     flag++;
+    //   }
+    // }
+    // console.log("cool");
+      // if(flag === 0) {
+        let online_temp = $("<h4>").html(`${ username } is online!`);
+        $("#online").append(online_temp[0]);
+      // }
+
+  }
+
+
+
+
   /*///////////////////////////////////////////
   Execution of the main script starts from here
   ///////////////////////////////////////////*/
@@ -11364,7 +11391,7 @@ $(document).ready(function () {
   const channel = pusher.subscribe("chat-room");
   channel.bind("message-added", onMessageAdded);
   channel.bind("person-typing", onPersonTyping);
-
+  channel.bind("person-online", onPersonOnline);
 
   loading();
 

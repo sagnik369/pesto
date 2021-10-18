@@ -73,7 +73,7 @@ function postMessage() {
 
         fd.append("file", inputFiles[0].files[i - 1]);
 
-        //sender loaded and color set to orangered
+        //sender loaded and color set to red
 
         $("#sending-file").css({ "background": "red" });
 

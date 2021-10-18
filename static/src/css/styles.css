@@ -73,6 +73,12 @@ li {
     .username-btn:active {
       background: #24c278; }
 
+.online {
+  position: fixed;
+  top: 5.2rem;
+  left: 1.2rem;
+  z-index: 2; }
+
 .additional-inputs {
   position: relative;
   top: 50%;
@@ -263,11 +269,11 @@ li {
   top: .5rem;
   left: 1.2rem;
   z-index: 5;
-  padding: 1.1rem 1rem;
+  padding: .3rem .6rem;
   background: whitesmoke;
   opacity: 0;
   border-radius: 3px;
-  font-size: 1.3rem; }
+  font-size: 1.2rem; }
 
 .show-additional-inputs {
   background: #988dff;
@@ -329,6 +335,8 @@ li {
   .send-btn {
     width: 5rem;
     font-size: 1.1rem; }
+  .online {
+    left: .5rem; }
   .typing {
     left: .5rem;
     padding: .1rem .2rem;

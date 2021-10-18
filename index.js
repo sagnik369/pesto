@@ -52,6 +52,16 @@ app.get("/get", function (req, res) {
   });
 });
 
+//Route when a person comes online
+
+app.post("/online", function (req, res) {
+  var username = req.body.user;
+
+  pusher.trigger("chat-room", "person-online", username);
+  res.sendStatus(200);
+  res.end();
+});
+
 //Typing indicator route
 
 app.post("/typing", function (req, res) {
