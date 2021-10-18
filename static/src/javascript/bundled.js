@@ -10920,10 +10920,25 @@ function loadMessages() {
 
   let i = Math.floor(Math.random() * 14);
 
-  //gets the messages from the database
+  //generate random facts
 
-  $.get("/get", function (res) {
+  $.get("https://uselessfacts.jsph.pl/random.json?language=en", function(res) {
+    $("#facts").html(`${ res.text }`);
+  });
+
+
+  //gets the messages from the database
+  
+  $.get("/get", function(res) {
+
+    //iterates through the responses
+
     res.forEach((message) => {
+
+      //hides random facts
+
+      $("#facts").css("display", "none");
+
       //list-item initialized and declared
 
       let template = $("<li>").html(`<div>
@@ -10980,9 +10995,14 @@ function loadMessages() {
       //list-item appended
 
       $("#chat-list").append(template[0]);
+      
       //Scrolled down to the bottom of the page when the messages load
 
       $("#chat-list-container").scrollTop($("#chat-list").height());
+
+      //show fact show button
+
+      $("#show-fact").show();
     });
   });
 }
@@ -10992,52 +11012,40 @@ module.exports = loadMessages;
 },{"jquery":1}],4:[function(require,module,exports){
 const $ = require("jquery");
 
-function messageInput() {
-  //additional inputs for image url and YouTube videos
-
-  $("#show-additional-inputs").click(function () {
-    $("#additional-inputs-container").show();
-  });
-
-  $("#close-additional-inputs").click(function () {
-    $("#additional-inputs-container").hide();
-  });
-}
-
-module.exports = messageInput;
-
-},{"jquery":1}],5:[function(require,module,exports){
-const $ = require("jquery");
-
 function postMessage() {
 
   //Username is extracted
 
   let username = JSON.parse(window.localStorage.getItem("user"));
+  
+  //Typing indicator set
 
-  //onclick of the send-btn button the sending() function is executed
+  $("#message").keydown(function() {
+    $.post("/typing", { username });
+  });
 
-  $("#send-btn").click(sending);
 
+  //Enter key can be used to send messages
 
   $(window).keyup(function(e) {
-
-    //Typing indicator set
-
-    $.post("/typing", { username });
-
-    //Enter key can be used to send messages
-
     if(e.keyCode === 13)
       sending();
   });
 
     
-    function sending () {
+    
+  //onclick of the send-btn button the sending() function is executed
 
-      //Closes the additional-inputs if open
+  $("#send-btn").click(sending);
+  
+  function sending() {
 
-      $("#additional-inputs-container").hide();
+      //Closes the additional-inputs if open and rotates the button
+
+      if($("#additional-inputs-container").css("display") !== "none") {
+        $("#additional-inputs-container").hide();
+        $("#show-additional-inputs").css({ "transform": "rotate(0deg)" });
+      }
 
       //Value from the input fields extracted
 
@@ -11079,7 +11087,7 @@ function postMessage() {
 
         //sender loaded and color set to orangered
 
-        $("#sending-file").css("background", "red");
+        $("#sending-file").css({ "background": "red" });
 
         fetch("https://api.anonfiles.com/upload?token=3ba8122b5e3c9048", {
           mode: "no-cors",
@@ -11089,7 +11097,7 @@ function postMessage() {
 
           //sender background set to transparent
 
-          $("#sending-file").css("background", "transparent")
+          $("#sending-file").css({ "background": "transparent" })
         );
         i--;
       }
@@ -11105,24 +11113,46 @@ function postMessage() {
 
 module.exports = postMessage;
 
-},{"jquery":1}],6:[function(require,module,exports){
+},{"jquery":1}],5:[function(require,module,exports){
 const $ = require("jquery");
 
 function toggleExtras() {
+  
   //additional inputs for image url and YouTube videos
 
   $("#show-additional-inputs").click(function () {
-    $("#additional-inputs-container").show();
-  });
+    
+    //rotates the button by 45deg everytime it is pressed
+    
+    if($("#additional-inputs-container").css("display") === "none")
+      $(this).css({ "transform": "rotate(45deg)" });
+    
+    else
+      $(this).css({ "transform": "rotate(0deg)" });
 
-  $("#close-additional-inputs").click(function () {
-    $("#additional-inputs-container").hide();
+    $("#additional-inputs-container").toggle();
+  });
+      
+  //toggle facts show button
+
+  $("#show-fact").click(function() {
+    $("#facts").toggle();
+    $("#chat-list").toggle();
+
+    //changes the HTML content of the toggle button
+
+    if($(this).html() === "SHOW ME THE FACT!")
+      $(this).html("SHOW ME THE CHAT!")
+    else {
+      $(this).html("SHOW ME THE FACT!")
+      $("#chat-list-container").scrollTop($("#chat-list").height());
+    }
   });
 }
 
 module.exports = toggleExtras;
 
-},{"jquery":1}],7:[function(require,module,exports){
+},{"jquery":1}],6:[function(require,module,exports){
 const $ = require("jquery");
 
 function usernameChange() {
@@ -11140,7 +11170,7 @@ function usernameChange() {
   //warning message toggles between hide and show when wrong username is typed
 
   $("#username-input").keyup(function () {
-    let temp_username = $.trim($("#username-input").val());
+    let temp_username = $.trim($(this).val());
     if (temp_username !== "") $("#username-warning").hide();
     else $("#username-warning").show();
   });
@@ -11148,7 +11178,7 @@ function usernameChange() {
 
 module.exports = usernameChange;
 
-},{"jquery":1}],8:[function(require,module,exports){
+},{"jquery":1}],7:[function(require,module,exports){
 const $ = require("jquery");
 
 function usernameInit() {
@@ -11157,6 +11187,7 @@ function usernameInit() {
   //Sets the username for first time
 
   $("#username-btn").click(function () {
+    
     //fetches the username from the input
 
     let temp_username = $.trim($("#username-input").val());
@@ -11173,13 +11204,12 @@ function usernameInit() {
 
 module.exports = usernameInit;
 
-},{"jquery":1}],9:[function(require,module,exports){
+},{"jquery":1}],8:[function(require,module,exports){
 const $ = require("jquery");
 const loading = require("./components/loading");
 const usernameInit = require("./components/usernameinit");
 const usernameChange = require("./components/usernamechange");
 const toggleExtras = require("./components/toggleextras");
-const messageInput = require("./components/messageinput");
 const loadMessages = require("./components/loadmessages");
 const postMessage = require("./components/postmessage");
 
@@ -11213,6 +11243,10 @@ $(document).ready(function () {
   //When a message is emmited then this function is called
 
   function onMessageAdded(message) {
+
+    //hides random facts
+
+    $("#facts").css({ "display": "none" });
     
     //Generates a random number
 
@@ -11291,16 +11325,16 @@ $(document).ready(function () {
 
       i = Math.floor(Math.random() * 14);
 
-      //when an user types his message it is show on the list
+      //when an user types his message is show on the list
   
       $("#typing").html(`${ username } ${ ranArr[i] }...`);
     }
     
-    else
-      //when an you type a message it is show on the list
-
+    else{
+      //when an user types his message is show on the list
+      
       $("#typing").html(`You are typing...`);
-    
+    }
 
 
 
@@ -11310,8 +11344,9 @@ $(document).ready(function () {
     setTimeout(() => {
       $("#typing").css({ "opacity": "0" });
       $("#typing").html('');
-    }, 3500);
+    }, 2500);
   }
+
 
 
   /*///////////////////////////////////////////
@@ -11335,15 +11370,13 @@ $(document).ready(function () {
 
   usernameInit();
 
-  usernameChange();
-
-  toggleExtras();
-
-  messageInput();
-
   loadMessages();
-
+  
   postMessage();
+  
+  usernameChange();
+  
+  toggleExtras();
 });
 
-},{"./components/loading":2,"./components/loadmessages":3,"./components/messageinput":4,"./components/postmessage":5,"./components/toggleextras":6,"./components/usernamechange":7,"./components/usernameinit":8,"jquery":1}]},{},[9]);
+},{"./components/loading":2,"./components/loadmessages":3,"./components/postmessage":4,"./components/toggleextras":5,"./components/usernamechange":6,"./components/usernameinit":7,"jquery":1}]},{},[8]);

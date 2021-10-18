@@ -1,6 +1,13 @@
 
 @media (max-width: 720px) {
+    .list-item {
+      font-size: .9rem;     
+      & footer {
+        font-size: .6rem;     
+      } 
+    }
     .change-username {
+      padding: .3rem .8rem;
       font-size: 0.8rem;
     }
     .show-additional-inputs {
@@ -16,6 +23,10 @@
       width: 2.6rem;
       height: 2.6rem;
       font-size: 1.5rem;
+    }
+    .show-fact {
+      top: 2.4rem;
+      font-size: .6rem;
     }
     .additional-inputs {
       height: 20.5rem;

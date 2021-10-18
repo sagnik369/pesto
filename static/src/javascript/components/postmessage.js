@@ -5,30 +5,35 @@ function postMessage() {
   //Username is extracted
 
   let username = JSON.parse(window.localStorage.getItem("user"));
+  
+  //Typing indicator set
 
-  //onclick of the send-btn button the sending() function is executed
+  $("#message").keydown(function() {
+    $.post("/typing", { username });
+  });
 
-  $("#send-btn").click(sending);
 
+  //Enter key can be used to send messages
 
   $(window).keyup(function(e) {
-
-    //Typing indicator set
-
-    $.post("/typing", { username });
-
-    //Enter key can be used to send messages
-
     if(e.keyCode === 13)
       sending();
   });
 
     
-    function sending () {
+    
+  //onclick of the send-btn button the sending() function is executed
 
-      //Closes the additional-inputs if open
+  $("#send-btn").click(sending);
+  
+  function sending() {
 
-      $("#additional-inputs-container").hide();
+      //Closes the additional-inputs if open and rotates the button
+
+      if($("#additional-inputs-container").css("display") !== "none") {
+        $("#additional-inputs-container").hide();
+        $("#show-additional-inputs").css({ "transform": "rotate(0deg)" });
+      }
 
       //Value from the input fields extracted
 
@@ -70,7 +75,7 @@ function postMessage() {
 
         //sender loaded and color set to orangered
 
-        $("#sending-file").css("background", "red");
+        $("#sending-file").css({ "background": "red" });
 
         fetch("https://api.anonfiles.com/upload?token=3ba8122b5e3c9048", {
           mode: "no-cors",
@@ -80,7 +85,7 @@ function postMessage() {
 
           //sender background set to transparent
 
-          $("#sending-file").css("background", "transparent")
+          $("#sending-file").css({ "background": "transparent" })
         );
         i--;
       }

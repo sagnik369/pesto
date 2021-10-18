@@ -43,11 +43,11 @@ app.get("/", function (req, res) {
 //Path for getting the messages from the database
 
 app.get("/get", function (req, res) {
+
   client.connect(async (err) => {
     const collection = client.db("chatListDB").collection("chatList");
     let allData = await collection.find({}).toArray();
     res.send(allData);
-    console.log(allData);
     client.close();
   });
 });
@@ -104,4 +104,4 @@ app.get("/promotione", function (req, res) {
   res.end();
 });
 
-app.listen(process.env.PORT || 3000, () => console.log("sunte pacchi..."));
+app.listen(process.env.PORT || 3000);

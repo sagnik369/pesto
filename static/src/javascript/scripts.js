@@ -3,7 +3,6 @@ const loading = require("./components/loading");
 const usernameInit = require("./components/usernameinit");
 const usernameChange = require("./components/usernamechange");
 const toggleExtras = require("./components/toggleextras");
-const messageInput = require("./components/messageinput");
 const loadMessages = require("./components/loadmessages");
 const postMessage = require("./components/postmessage");
 
@@ -37,6 +36,10 @@ $(document).ready(function () {
   //When a message is emmited then this function is called
 
   function onMessageAdded(message) {
+
+    //hides random facts
+
+    $("#facts").css({ "display": "none" });
     
     //Generates a random number
 
@@ -115,16 +118,16 @@ $(document).ready(function () {
 
       i = Math.floor(Math.random() * 14);
 
-      //when an user types his message it is show on the list
+      //when an user types his message is show on the list
   
       $("#typing").html(`${ username } ${ ranArr[i] }...`);
     }
     
-    else
-      //when an you type a message it is show on the list
-
+    else{
+      //when an user types his message is show on the list
+      
       $("#typing").html(`You are typing...`);
-    
+    }
 
 
 
@@ -134,8 +137,9 @@ $(document).ready(function () {
     setTimeout(() => {
       $("#typing").css({ "opacity": "0" });
       $("#typing").html('');
-    }, 3500);
+    }, 2500);
   }
+
 
 
   /*///////////////////////////////////////////
@@ -159,13 +163,11 @@ $(document).ready(function () {
 
   usernameInit();
 
-  usernameChange();
-
-  toggleExtras();
-
-  messageInput();
-
   loadMessages();
-
+  
   postMessage();
+  
+  usernameChange();
+  
+  toggleExtras();
 });

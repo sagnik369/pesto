@@ -1,33 +1,20 @@
 
-.show-additional-inputs,
-.close-additional-inputs {
-  background: rgb(152, 141, 255);
-  border: none;
-  border-radius: 50%;
-  font-weight: 700;
-  position: absolute;
-  cursor: pointer;
-  z-index: 1;
-}
-
 .show-additional-inputs {
+    background: rgb(152, 141, 255);
+    border: none;
+    border-radius: 50%;
+    font-weight: 700;
+    position: absolute;
+    cursor: pointer;
+    z-index: 2;
     width: 5rem;
     height: 5rem;
-    bottom: 4rem;
+    bottom: 5rem;
     right: 1rem;
     font-size: 4rem;
-
-    &:active {
-        background: rgb(101, 91, 190);
-    }
-}
-
-.close-additional-inputs {
-    width: 2.8rem;
-    height: 2.8rem;
-    top: 1rem;
-    right: 1rem;
-    font-size: 1.8rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     &:active {
         background: rgb(101, 91, 190);

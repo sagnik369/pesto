@@ -42,7 +42,6 @@
     }
   
     & iframe {
-        @include centered(0%, 50%);
         margin: 1.5rem 0;
         width: 85%;
         aspect-ratio: 16/10;
@@ -69,4 +68,12 @@
     & footer {
         text-align: left;
     }
+}
+
+.facts {
+    font-size: 1.2rem;
+    color: grey;
+    @include centered(50%, 50%);
+    width: 80%;
+    text-align: center;
 }

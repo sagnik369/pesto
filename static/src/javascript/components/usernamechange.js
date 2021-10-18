@@ -15,7 +15,7 @@ function usernameChange() {
   //warning message toggles between hide and show when wrong username is typed
 
   $("#username-input").keyup(function () {
-    let temp_username = $.trim($("#username-input").val());
+    let temp_username = $.trim($(this).val());
     if (temp_username !== "") $("#username-warning").hide();
     else $("#username-warning").show();
   });

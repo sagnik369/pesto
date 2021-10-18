@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./src/css/styles.min.css" type="text/css" />
+    <link rel="stylesheet" href="./src/css/styles.css" type="text/css" />
     <link rel="icon" href="./src/logo/logo.png" type="x-icon/image" />
     <script src="https://js.pusher.com/4.0/pusher.min.js" defer></script>
     <script src="./src/javascript/bundled.js" defer></script>
@@ -38,65 +38,58 @@
       </button>
     </div>
 
+    <button id="show-fact" class="show-fact" type="button">SHOW ME THE FACT!</button>
+
     <section id="chat-list-container" class="chat-list-container">
+      <div id="facts" class="facts"></div>
+
       <ul id="chat-list" class="chat-list"></ul>
     </section>
 
+    
+    <section id="additional-inputs-container" class="additional-inputs-container">
+      <div class="additional-inputs">
+        <label class="additional-inputs-labels" for="image">
+          Enter the image URLs:
+        </label>
+        <input
+          id="image"
+          class="image"
+          type="url"
+          placeholder="Add a space between the URLs!"
+        />
+        <label class="additional-inputs-labels" for="video">
+          Enter the Youtube video URLs:
+        </label>
+        <input
+          id="video"
+          class="video"
+          type="url"
+          placeholder="Add a space between the URLs!"
+        />
+        <footer class="additional-inputs-warning">
+        <small>&#9888; Only YouTube videos are avaliable</small>
+        </footer>
+        <input
+          type="file"
+          name="file"
+          id="file-data"
+          class="file-data"
+          multiple
+        />
+        <footer class="additional-inputs-warning">
+          <small>&#9888; These files are personally sent to me only</small>
+        </footer>
+      </div>
+    </section>
+    
+    <div type="button" id="show-additional-inputs" class="show-additional-inputs">
+      &plus;
+    </div>
+    
     <section class="message-container">
-      <section
-        id="additional-inputs-container"
-        class="additional-inputs-container"
-      >
-        <div class="additional-inputs">
-          <label class="additional-inputs-labels" for="image"
-            >Enter the image URLs:</label
-          >
-          <input
-            id="image"
-            class="image"
-            type="url"
-            placeholder="Add a space between the URLs!"
-          />
-          <label class="additional-inputs-labels" for="video"
-            >Enter the Youtube video URLs:</label
-          >
-          <input
-            id="video"
-            class="video"
-            type="url"
-            placeholder="Add a space between the URLs!"
-          />
-          <footer class="additional-inputs-warning">
-            <small>&#9888; Only YouTube videos are avaliable</small>
-          </footer>
-          <input
-            type="file"
-            name="file"
-            id="file-data"
-            class="file-data"
-            multiple
-          />
-          <footer class="additional-inputs-warning">
-            <small>&#9888; These files are personally sent to me only</small>
-          </footer>
-          <button
-            type="button"
-            id="close-additional-inputs"
-            class="close-additional-inputs"
-          >
-            &Cross;
-          </button>
-        </div>
-      </section>
       <input id="message" class="message" type="text" placeholder="Type here" />
       <button type="button" class="send-btn" id="send-btn">Send</button>
-      <button
-        type="button"
-        id="show-additional-inputs"
-        class="show-additional-inputs"
-      >
-        &plus;
-      </button>
     </section>
   </body>
 </html>

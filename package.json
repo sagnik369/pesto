@@ -5,10 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-
     "bundle:js": "browserify ./static/src/javascript/scripts.js -o ./static/src/javascript/bundled.js",
     "watch:js": "watchify ./static/src/javascript/scripts.js -o ./static/src/javascript/bundled.js",
-
     "bundle:scss": "node-sass ./static/src/scss/main.scss ./static/src/css/styles.css",
     "watch:scss": "node-sass ./static/src/scss/main.scss ./static/src/css/styles.css -w",
     "autoprefix": "postcss --use autoprefixer -b 'last 10 versions' ./static/src/css/styles.css -o ./static/src/css/styles.prefix.css",

@@ -24,10 +24,25 @@ function loadMessages() {
 
   let i = Math.floor(Math.random() * 14);
 
-  //gets the messages from the database
+  //generate random facts
 
-  $.get("/get", function (res) {
+  $.get("https://uselessfacts.jsph.pl/random.json?language=en", function(res) {
+    $("#facts").html(`${ res.text }`);
+  });
+
+
+  //gets the messages from the database
+  
+  $.get("/get", function(res) {
+
+    //iterates through the responses
+
     res.forEach((message) => {
+
+      //hides random facts
+
+      $("#facts").css("display", "none");
+
       //list-item initialized and declared
 
       let template = $("<li>").html(`<div>
@@ -84,9 +99,14 @@ function loadMessages() {
       //list-item appended
 
       $("#chat-list").append(template[0]);
+      
       //Scrolled down to the bottom of the page when the messages load
 
       $("#chat-list-container").scrollTop($("#chat-list").height());
+
+      //show fact show button
+
+      $("#show-fact").show();
     });
   });
 }

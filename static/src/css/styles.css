@@ -6,6 +6,7 @@
   font-family: "lora", sans-serif; }
 
 body {
+  overflow-x: hidden;
   background: whitesmoke; }
 
 ::-webkit-scrollbar {
@@ -85,7 +86,8 @@ li {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center; }
+  align-items: center;
+  z-index: 20; }
   .additional-inputs-container {
     display: none;
     position: fixed;
@@ -94,7 +96,7 @@ li {
     z-index: 2;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.5); }
+    background-color: rgba(0, 0, 0, 0.4); }
   .additional-inputs-warning, .additional-inputs-labels {
     display: block;
     width: 90%;
@@ -135,24 +137,8 @@ li {
   animation-iteration-count: infinite;
   animation-timing-function: ease-in-out; }
 
-@keyframes bulge {
-  0% {
-    border-radius: 50%;
-    transform: scale(1.3) rotate(0deg);
-    opacity: .2; }
-  50% {
-    border-radius: 20%;
-    transform: scale(0.7) rotate(360deg);
-    opacity: 1; }
-  100% {
-    border-radius: 50%;
-    transform: scale(1.3) rotate(0deg);
-    opacity: .2; } }
-
 .change-username {
-  width: 15vw;
-  min-width: 9rem;
-  padding: 5px;
+  padding: .5rem 1rem;
   background: #2200ff;
   border: 1px solid rgba(0, 0, 0, 0.3);
   border-radius: 4px;
@@ -166,6 +152,18 @@ li {
     z-index: 4; }
   .change-username:active {
     background: #1a01bd; }
+
+.show-fact {
+  display: none;
+  position: fixed;
+  top: 3rem;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  right: 5px;
+  z-index: 1;
+  background-color: whitesmoke;
+  padding: .15rem;
+  cursor: pointer;
+  font-size: .7rem; }
 
 .chat-list-container {
   position: relative;
@@ -204,10 +202,6 @@ li {
     border-radius: 3px;
     cursor: pointer; }
   .list-item iframe {
-    position: relative;
-    top: 0%;
-    left: 50%;
-    transform: translate(-50%, 0%);
     margin: 1.5rem 0;
     width: 85%;
     aspect-ratio: 16/10;
@@ -226,8 +220,17 @@ li {
   .other-users footer {
     text-align: left; }
 
+.facts {
+  font-size: 1.2rem;
+  color: grey;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  text-align: center; }
+
 .message {
-  z-index: 2;
   width: 80%;
   background: #f0f0f0;
   border: 1px solid rgba(0, 0, 0, 0.3);
@@ -241,7 +244,8 @@ li {
     left: 0;
     width: 100%;
     height: 8vh;
-    min-height: 3rem; }
+    min-height: 3rem;
+    z-index: 2; }
 
 .send-btn {
   width: 20%;
@@ -250,8 +254,7 @@ li {
   border-radius: 4px;
   font-size: 1.4rem;
   font-weight: 700;
-  cursor: pointer;
-  z-index: 2; }
+  cursor: pointer; }
   .send-btn:active {
     background: #24c278; }
 
@@ -266,36 +269,32 @@ li {
   border-radius: 3px;
   font-size: 1.3rem; }
 
-.show-additional-inputs,
-.close-additional-inputs {
+.show-additional-inputs {
   background: #988dff;
   border: none;
   border-radius: 50%;
   font-weight: 700;
   position: absolute;
   cursor: pointer;
-  z-index: 1; }
-
-.show-additional-inputs {
+  z-index: 2;
   width: 5rem;
   height: 5rem;
-  bottom: 4rem;
+  bottom: 5rem;
   right: 1rem;
-  font-size: 4rem; }
+  font-size: 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
   .show-additional-inputs:active {
     background: #655bbe; }
 
-.close-additional-inputs {
-  width: 2.8rem;
-  height: 2.8rem;
-  top: 1rem;
-  right: 1rem;
-  font-size: 1.8rem; }
-  .close-additional-inputs:active {
-    background: #655bbe; }
-
 @media (max-width: 720px) {
+  .list-item {
+    font-size: .9rem; }
+    .list-item footer {
+      font-size: .6rem; }
   .change-username {
+    padding: .3rem .8rem;
     font-size: 0.8rem; }
   .show-additional-inputs {
     width: 3rem;
@@ -309,6 +308,9 @@ li {
     width: 2.6rem;
     height: 2.6rem;
     font-size: 1.5rem; }
+  .show-fact {
+    top: 2.4rem;
+    font-size: .6rem; }
   .additional-inputs {
     height: 20.5rem; }
     .additional-inputs-labels, .additional-inputs-warning {
@@ -335,3 +337,17 @@ li {
     aspect-ratio: 16/12;
     width: 100%;
     margin: 0.9rem 0; } }
+
+@keyframes bulge {
+  0% {
+    border-radius: 50%;
+    transform: scale(1.3) rotate(0deg);
+    opacity: .2; }
+  50% {
+    border-radius: 20%;
+    transform: scale(0.7) rotate(360deg);
+    opacity: 1; }
+  100% {
+    border-radius: 50%;
+    transform: scale(1.3) rotate(0deg);
+    opacity: .2; } }

@@ -6,6 +6,7 @@ function usernameInit() {
   //Sets the username for first time
 
   $("#username-btn").click(function () {
+    
     //fetches the username from the input
 
     let temp_username = $.trim($("#username-input").val());
