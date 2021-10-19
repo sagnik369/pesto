@@ -33,6 +33,13 @@
         margin: 1rem;
     }
 
+    &-label {
+        display: block;
+        width: 90%;
+        font-size: 1.15rem;
+        margin: 1rem 0 0 0;
+    }
+
     &-warning {
         display: none;
         width: 90%;
@@ -65,8 +72,7 @@
     z-index: 2;
     font-size: 1rem;
     background: #f0ffffe8;
-    max-height: 3rem;
-    max-width: 5rem;
-    padding: .05rem .1rem;
+    max-height: 4.5rem;
+    padding: .3rem .6rem;
     overflow-y: auto;
 }

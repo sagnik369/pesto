@@ -55,6 +55,11 @@ li {
     border-radius: 4px;
     font-size: 1.1rem;
     margin: 1rem; }
+  .username-label {
+    display: block;
+    width: 90%;
+    font-size: 1.15rem;
+    margin: 1rem 0 0 0; }
   .username-warning {
     display: none;
     width: 90%;
@@ -80,9 +85,8 @@ li {
   z-index: 2;
   font-size: 1rem;
   background: #f0ffffe8;
-  max-height: 3rem;
-  max-width: 5rem;
-  padding: .05rem .1rem;
+  max-height: 4.5rem;
+  padding: .3rem .6rem;
   overflow-y: auto; }
 
 .additional-inputs {
@@ -334,6 +338,9 @@ li {
     height: 2rem;
     margin: 0.6rem;
     font-size: 0.85rem; }
+  .username-label {
+    font-size: 1rem;
+    margin: .8rem 0 0 0; }
   .sending-file {
     left: .5rem; }
   .message {
@@ -343,7 +350,9 @@ li {
     font-size: 1.1rem; }
   .online {
     left: .5rem;
-    font-size: .75rem; }
+    font-size: .75rem;
+    max-height: 3rem;
+    padding: .1rem .3rem; }
   .typing {
     left: .5rem;
     padding: .1rem .2rem;
