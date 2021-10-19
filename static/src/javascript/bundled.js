@@ -10885,10 +10885,11 @@ return jQuery;
 const $ = require("jquery");
 
 function loading() {
+  
   //initializes the username with user from localStorage if avaliable
 
-  var username = JSON.parse(window.localStorage.getItem("user"));
-  if (username === null) $("#username-container").show();
+  var user = JSON.parse(window.localStorage.getItem("user"));
+  if (!user) $("#username-container").show();
 }
 
 module.exports = loading;
@@ -10933,7 +10934,7 @@ function loadMessages() {
 
     //iterates through the responses
 
-    res.forEach((message) => {
+    res.allData.forEach((message) => {
 
       //hides random facts
 
@@ -11004,12 +11005,47 @@ function loadMessages() {
 
       $("#show-fact").show();
     });
+
+    //For displaying the users who are online
+
+    let online_temp;
+
+    res.online_users.map(el => {
+
+      //Checks if the element is empty or not which happens when a user has not registered yet...
+
+      if(el) {
+        online_temp = $("<li>").html(el);
+        $("#online").append(online_temp[0]);
+      }
+    });
   });
 }
 
 module.exports = loadMessages;
 
 },{"jquery":1}],4:[function(require,module,exports){
+const $ = require("jquery");
+
+function personOnline() {
+    
+  //username is fetched from localStorage
+
+  let user = JSON.parse(window.localStorage.getItem("user"));
+
+  //When this user comes online then this API sends data to the backend also checking if username is present in local storage
+
+  if(user)
+    $.post("/online", { user });
+
+  $(window).on("beforeunload", function() {
+    if(user)
+      $.post("/offline", { user });
+  });
+}
+
+module.exports = personOnline;
+},{"jquery":1}],5:[function(require,module,exports){
 const $ = require("jquery");
 
 function postMessage() {
@@ -11113,7 +11149,7 @@ function postMessage() {
 
 module.exports = postMessage;
 
-},{"jquery":1}],5:[function(require,module,exports){
+},{"jquery":1}],6:[function(require,module,exports){
 const $ = require("jquery");
 
 function toggleExtras() {
@@ -11152,37 +11188,39 @@ function toggleExtras() {
 
 module.exports = toggleExtras;
 
-},{"jquery":1}],6:[function(require,module,exports){
+},{"jquery":1}],7:[function(require,module,exports){
 const $ = require("jquery");
 
 function usernameChange() {
+
   //Changes the username
 
   $("#change-username").click(function () {
-    let username = JSON.parse(window.localStorage.getItem("user"));
+    let user = JSON.parse(window.localStorage.getItem("user"));
     $("#username-container").show();
 
     //displays the current username in the input field
 
-    $("#username-input").val(username);
+    $("#username-input").val(user);
   });
 
   //warning message toggles between hide and show when wrong username is typed
 
   $("#username-input").keyup(function () {
     let temp_username = $.trim($(this).val());
-    if (temp_username !== "") $("#username-warning").hide();
+    if (temp_username) $("#username-warning").hide();
     else $("#username-warning").show();
   });
 }
 
 module.exports = usernameChange;
 
-},{"jquery":1}],7:[function(require,module,exports){
+},{"jquery":1}],8:[function(require,module,exports){
 const $ = require("jquery");
 
 function usernameInit() {
-  let username = "";
+  
+  let user = "";
 
   //Sets the username for first time
 
@@ -11194,20 +11232,36 @@ function usernameInit() {
 
     //checks the validity of the username and if found valid stored in the localStorage
 
-    if (temp_username !== "") {
+    if (temp_username) {
+
       $("#username-container").hide();
-      username = temp_username;
-      window.localStorage.setItem("user", JSON.stringify(username));
+
+      //Gets the current username
+
+      user = JSON.parse(window.localStorage.getItem("user"));
+
+      //Removes present username
+
+      $.post("/offline", { user });
+
+      user = temp_username;
+      window.localStorage.setItem("user", JSON.stringify(user));
+
+      //Updates to everyone that someone has joined the chat or the current user has changed the username
+
+      $.post("/online", { user });
+
     } else $("#username-warning").show();
   });
 }
 
 module.exports = usernameInit;
 
-},{"jquery":1}],8:[function(require,module,exports){
+},{"jquery":1}],9:[function(require,module,exports){
 const $ = require("jquery");
 const loading = require("./components/loading");
 const usernameInit = require("./components/usernameinit");
+const personOnline = require("./components/persononline");
 const usernameChange = require("./components/usernamechange");
 const toggleExtras = require("./components/toggleextras");
 const loadMessages = require("./components/loadmessages");
@@ -11218,10 +11272,6 @@ $(document).ready(function () {
   //username is fetched from localStorage
 
   let user = JSON.parse(window.localStorage.getItem("user"));
-
-  //When a user comes online then this API sends data to the backend
-
-  $.post("/online", { user });
 
   //Random verbs
 
@@ -11342,7 +11392,7 @@ $(document).ready(function () {
 
 
 
-    //makes the list visible for a brief moment, then makes it dissappear and clears it's html content too
+    //makes the list visible for a brief moment, then makes it disappear and clears it's html content too
 
     $("#typing").css({ "opacity": ".8" });
     setTimeout(() => {
@@ -11355,22 +11405,20 @@ $(document).ready(function () {
 
   //Gets data from the backend when a user comes online
   
-  function onPersonOnline(username) {
+  function onPersonOnline(online_users) {
 
-    
-    // let flag = 0;
-    
-    // for(let i=0; i<$("#online").length; i++) {
-    //   if($("#online")[0].children[i].innerHTML === `${ username } is online!`) {
-    //     flag++;
-    //   }
-    // }
-    // console.log("cool");
-      // if(flag === 0) {
-        let online_temp = $("<h4>").html(`${ username } is online!`);
+    let online_temp;
+
+    $("#online")[0].innerHTML = '';
+    online_users.map(el => {
+
+      //Checks if the element is empty or not which happens when a user has not registered yet...
+
+      if(el) {
+        online_temp = $("<li>").html(el);
         $("#online").append(online_temp[0]);
-      // }
-
+      }
+    });
   }
 
 
@@ -11397,6 +11445,8 @@ $(document).ready(function () {
 
   usernameInit();
 
+  personOnline();
+
   loadMessages();
   
   postMessage();
@@ -11406,4 +11456,4 @@ $(document).ready(function () {
   toggleExtras();
 });
 
-},{"./components/loading":2,"./components/loadmessages":3,"./components/postmessage":4,"./components/toggleextras":5,"./components/usernamechange":6,"./components/usernameinit":7,"jquery":1}]},{},[8]);
+},{"./components/loading":2,"./components/loadmessages":3,"./components/persononline":4,"./components/postmessage":5,"./components/toggleextras":6,"./components/usernamechange":7,"./components/usernameinit":8,"jquery":1}]},{},[9]);

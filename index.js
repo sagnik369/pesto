@@ -29,6 +29,10 @@ const client = new MongoClient(process.env.MONGO_URL, {
   useUnifiedTopology: true
 });
 
+//ARRAY TO KEEP TRACK OF ONLINE USERS
+
+var online_users = [];
+
 /*////////
 Routes set
 ////////*/
@@ -40,25 +44,47 @@ app.get("/", function (req, res) {
   res.end();
 });
 
-//Path for getting the messages from the database
+//Path for getting the messages from the database and users who are online
 
 app.get("/get", function (req, res) {
 
   client.connect(async (err) => {
     const collection = client.db("chatListDB").collection("chatList");
     let allData = await collection.find({}).toArray();
-    res.send(allData);
+    res.json({ allData, online_users });
     client.close();
   });
 });
 
-//Route when a person comes online
+//Route when a user comes online
 
 app.post("/online", function (req, res) {
   var username = req.body.user;
 
-  pusher.trigger("chat-room", "person-online", username);
-  res.sendStatus(200);
+  //Checks if the user has refreshed the page or not
+
+  //Sends the data to the other clients only if the user was not present in the online_users list
+
+  if(!online_users.includes(username)) {
+    online_users.push(username);
+    pusher.trigger("chat-room", "person-online", online_users);
+    res.sendStatus(200);
+  }
+  res.end();
+});
+
+//Route when a user gets offline
+
+app.post("/offline", function (req, res) {
+  var username = req.body.user;
+
+  //Does not check if the user has refreshed the page but sends the data anyway which will be overwritten in client side
+
+  //Filters the user who is attempting to leave the page
+
+  online_users = online_users.filter((user) => user !== username);
+    pusher.trigger("chat-room", "person-online", online_users);
+    res.sendStatus(200);
   res.end();
 });
 

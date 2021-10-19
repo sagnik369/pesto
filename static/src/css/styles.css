@@ -77,7 +77,13 @@ li {
   position: fixed;
   top: 5.2rem;
   left: 1.2rem;
-  z-index: 2; }
+  z-index: 2;
+  font-size: 1rem;
+  background: #f0ffffe8;
+  max-height: 3rem;
+  max-width: 5rem;
+  padding: .05rem .1rem;
+  overflow-y: auto; }
 
 .additional-inputs {
   position: relative;
@@ -336,7 +342,8 @@ li {
     width: 5rem;
     font-size: 1.1rem; }
   .online {
-    left: .5rem; }
+    left: .5rem;
+    font-size: .75rem; }
   .typing {
     left: .5rem;
     padding: .1rem .2rem;

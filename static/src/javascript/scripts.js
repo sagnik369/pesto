@@ -1,6 +1,7 @@
 const $ = require("jquery");
 const loading = require("./components/loading");
 const usernameInit = require("./components/usernameinit");
+const personOnline = require("./components/persononline");
 const usernameChange = require("./components/usernamechange");
 const toggleExtras = require("./components/toggleextras");
 const loadMessages = require("./components/loadmessages");
@@ -11,10 +12,6 @@ $(document).ready(function () {
   //username is fetched from localStorage
 
   let user = JSON.parse(window.localStorage.getItem("user"));
-
-  //When a user comes online then this API sends data to the backend
-
-  $.post("/online", { user });
 
   //Random verbs
 
@@ -135,7 +132,7 @@ $(document).ready(function () {
 
 
 
-    //makes the list visible for a brief moment, then makes it dissappear and clears it's html content too
+    //makes the list visible for a brief moment, then makes it disappear and clears it's html content too
 
     $("#typing").css({ "opacity": ".8" });
     setTimeout(() => {
@@ -148,22 +145,20 @@ $(document).ready(function () {
 
   //Gets data from the backend when a user comes online
   
-  function onPersonOnline(username) {
+  function onPersonOnline(online_users) {
 
-    
-    // let flag = 0;
-    
-    // for(let i=0; i<$("#online").length; i++) {
-    //   if($("#online")[0].children[i].innerHTML === `${ username } is online!`) {
-    //     flag++;
-    //   }
-    // }
-    // console.log("cool");
-      // if(flag === 0) {
-        let online_temp = $("<h4>").html(`${ username } is online!`);
+    let online_temp;
+
+    $("#online")[0].innerHTML = '';
+    online_users.map(el => {
+
+      //Checks if the element is empty or not which happens when a user has not registered yet...
+
+      if(el) {
+        online_temp = $("<li>").html(el);
         $("#online").append(online_temp[0]);
-      // }
-
+      }
+    });
   }
 
 
@@ -189,6 +184,8 @@ $(document).ready(function () {
   loading();
 
   usernameInit();
+
+  personOnline();
 
   loadMessages();
   

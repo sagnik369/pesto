@@ -37,7 +37,7 @@ function loadMessages() {
 
     //iterates through the responses
 
-    res.forEach((message) => {
+    res.allData.forEach((message) => {
 
       //hides random facts
 
@@ -107,6 +107,20 @@ function loadMessages() {
       //show fact show button
 
       $("#show-fact").show();
+    });
+
+    //For displaying the users who are online
+
+    let online_temp;
+
+    res.online_users.map(el => {
+
+      //Checks if the element is empty or not which happens when a user has not registered yet...
+
+      if(el) {
+        online_temp = $("<li>").html(el);
+        $("#online").append(online_temp[0]);
+      }
     });
   });
 }
