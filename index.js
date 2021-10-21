@@ -62,29 +62,29 @@ app.post("/online", function (req, res) {
   var username = req.body.user;
 
   //Checks if the user has refreshed the page or not
-
   //Sends the data to the other clients only if the user was not present in the online_users list
 
-  if(!online_users.includes(username)) {
+  if(!(online_users.includes(username))) {
     online_users.push(username);
-    pusher.trigger("chat-room", "person-online", online_users);
-    res.sendStatus(200);
   }
+  pusher.trigger("chat-room", "person-online", online_users);
+  res.sendStatus(200);
   res.end();
 });
 
 //Route when a user gets offline
 
 app.post("/offline", function (req, res) {
+
   var username = req.body.user;
 
   //Does not check if the user has refreshed the page but sends the data anyway which will be overwritten in client side
-
   //Filters the user who is attempting to leave the page
 
-  online_users = online_users.filter((user) => user !== username);
-    pusher.trigger("chat-room", "person-online", online_users);
-    res.sendStatus(200);
+  let online_users_temp = online_users.filter((user) => user !== username);
+  online_users = online_users_temp;
+  pusher.trigger("chat-room", "person-online", online_users);
+  res.sendStatus(200);
   res.end();
 });
 

@@ -1,8 +1,10 @@
 const $ = require("jquery");
 
 function usernameInit() {
+
+  //Gets the current username
   
-  let user = "";
+  let user =  JSON.parse(window.localStorage.getItem("user"));
 
   //Sets the username for first time
 
@@ -18,10 +20,6 @@ function usernameInit() {
 
       $("#username-container").hide();
 
-      //Gets the current username
-
-      user = JSON.parse(window.localStorage.getItem("user"));
-
       //Removes present username
 
       $.post("/offline", { user });
@@ -32,6 +30,10 @@ function usernameInit() {
       //Updates to everyone that someone has joined the chat or the current user has changed the username
 
       $.post("/online", { user });
+
+      //For additional security reloads the page
+
+      window.location.reload();
 
     } else $("#username-warning").show();
   });

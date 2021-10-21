@@ -10885,11 +10885,12 @@ return jQuery;
 const $ = require("jquery");
 
 function loading() {
-  
+
   //initializes the username with user from localStorage if avaliable
 
-  var user = JSON.parse(window.localStorage.getItem("user"));
-  if (!user) $("#username-container").show();
+  let user = JSON.parse(window.localStorage.getItem("user"));
+
+  if (user) $("#username-container").hide();
 }
 
 module.exports = loading;
@@ -11033,14 +11034,21 @@ function personOnline() {
 
   let user = JSON.parse(window.localStorage.getItem("user"));
 
-  //When this user comes online then this API sends data to the backend also checking if username is present in local storage
+  //For sending data about this user online status
 
   if(user)
-    $.post("/online", { user });
+      $.post("/online", { user });
 
-  $(window).on("beforeunload", function() {
-    if(user)
+  //When this user goes offline then this API sends data to the backend also checking if the user has logged before exiting the page, then only the name is sent to the backend
+
+  $(document).on("visibilitychange", function() {
+    if (document.visibilityState === 'hidden') {
+      if(user)
       $.post("/offline", { user });
+    } else {
+      if(user)
+      $.post("/online", { user });
+    }
   });
 }
 
@@ -11219,8 +11227,10 @@ module.exports = usernameChange;
 const $ = require("jquery");
 
 function usernameInit() {
+
+  //Gets the current username
   
-  let user = "";
+  let user =  JSON.parse(window.localStorage.getItem("user"));
 
   //Sets the username for first time
 
@@ -11236,10 +11246,6 @@ function usernameInit() {
 
       $("#username-container").hide();
 
-      //Gets the current username
-
-      user = JSON.parse(window.localStorage.getItem("user"));
-
       //Removes present username
 
       $.post("/offline", { user });
@@ -11250,6 +11256,10 @@ function usernameInit() {
       //Updates to everyone that someone has joined the chat or the current user has changed the username
 
       $.post("/online", { user });
+
+      //For additional security reloads the page
+
+      window.location.reload();
 
     } else $("#username-warning").show();
   });

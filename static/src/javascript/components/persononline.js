@@ -6,14 +6,21 @@ function personOnline() {
 
   let user = JSON.parse(window.localStorage.getItem("user"));
 
-  //When this user comes online then this API sends data to the backend also checking if username is present in local storage
+  //For sending data about this user online status
 
   if(user)
-    $.post("/online", { user });
+      $.post("/online", { user });
 
-  $(window).on("beforeunload", function() {
-    if(user)
+  //When this user goes offline then this API sends data to the backend also checking if the user has logged before exiting the page, then only the name is sent to the backend
+
+  $(document).on("visibilitychange", function() {
+    if (document.visibilityState === 'hidden') {
+      if(user)
       $.post("/offline", { user });
+    } else {
+      if(user)
+      $.post("/online", { user });
+    }
   });
 }
 
