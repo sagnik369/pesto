@@ -54,8 +54,7 @@ function loadMessages() {
                                     <main>
                                       <div>
                                         <h3>
-                                          "${message.text}"
-                                        </h3>
+                                          ${message.text}                                        </h3>
                                       </div>
                                     </main>
                                     <footer>
@@ -91,6 +90,7 @@ function loadMessages() {
           let video_temp = $("<iframe>")
             .attr("src", `https://www.youtube.com/embed/${el}`)
             .attr("title", "an YouTube video")
+            .attr("allow", "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture")
             .attr("allowfullscreen", true);
           template[0].children[0].children[1].append(video_temp[0]);
         });

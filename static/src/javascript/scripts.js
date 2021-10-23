@@ -38,9 +38,21 @@ $(document).ready(function () {
 
   function onMessageAdded(message) {
 
-    //hides random facts
+    //Plays audio
 
+    let aud = new Audio("./src/audio/audio.mp3").play();
+
+    //hides random facts
+    
     $("#facts").css({ "display": "none" });
+    
+    //Shows chat list
+    
+    $("#chat-list").css({ "display": "block" });
+
+    //Scrolled down to the bottom of the page when the event occurs
+
+    $("#chat-list-container").scrollTop($("#chat-list").height());
     
     //Generates a random number
 
@@ -57,7 +69,7 @@ $(document).ready(function () {
                                     <main>
                                       <div>
                                         <h3>
-                                          "${message.text}"
+                                          ${message.text}
                                         </h3>
                                       </div>
                                     </main>
@@ -94,6 +106,7 @@ $(document).ready(function () {
         let video_temp = $("<iframe>")
           .attr("src", `https://www.youtube.com/embed/${el}`)
           .attr("title", "an YouTube video")
+          .attr("allow", "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture")
           .attr("allowfullscreen", true);
         template[0].children[0].children[1].append(video_temp[0]);
       });

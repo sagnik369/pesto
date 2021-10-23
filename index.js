@@ -64,9 +64,8 @@ app.post("/online", function (req, res) {
   //Checks if the user has refreshed the page or not
   //Sends the data to the other clients only if the user was not present in the online_users list
 
-  if(!(online_users.includes(username))) {
+  if(!(online_users.includes(username))) 
     online_users.push(username);
-  }
   pusher.trigger("chat-room", "person-online", online_users);
   res.sendStatus(200);
   res.end();

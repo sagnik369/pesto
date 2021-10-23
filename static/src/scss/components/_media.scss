@@ -4,7 +4,12 @@
       font-size: .9rem;     
       & footer {
         font-size: .6rem;     
-      } 
+      }
+      & iframe {
+        aspect-ratio: 16/12;
+        width: 100%;
+        margin: 0.9rem 0;
+      }
     }
     .change-username {
       padding: .3rem .8rem;
@@ -69,10 +74,5 @@
       left: .5rem;
       padding: .1rem .2rem;
       font-size: .9rem;
-    }
-    .list-item iframe {
-      aspect-ratio: 16/12;
-      width: 100%;
-      margin: 0.9rem 0;
     }
   }

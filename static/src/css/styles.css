@@ -196,14 +196,14 @@ li {
   overflow: auto; }
 
 .list-item {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   margin: 3rem auto;
-  padding: 0.2rem 1.1rem;
+  padding: 0.2rem 1rem;
   border-radius: 6px;
   max-height: 80vh;
   overflow: auto;
   background: #fcdddd;
-  width: 80%;
+  width: 85%;
   transform: translateX(-0.5rem) scale(1.05); }
   .list-item > div > main > div {
     overflow: auto;
@@ -231,7 +231,10 @@ li {
 .other-users {
   background: #df6f6f;
   text-align: right;
-  transform: translateX(0.5rem) scale(0.95); }
+  transform: translateX(0.5rem) scale(0.95);
+  animation-name: list-item-anime;
+  animation-duration: 1.5s;
+  animation-timing-function: ease; }
   .other-users footer {
     text-align: left; }
 
@@ -308,6 +311,10 @@ li {
     font-size: .9rem; }
     .list-item footer {
       font-size: .6rem; }
+    .list-item iframe {
+      aspect-ratio: 16/12;
+      width: 100%;
+      margin: 0.9rem 0; }
   .change-username {
     padding: .3rem .8rem;
     font-size: 0.8rem; }
@@ -355,11 +362,12 @@ li {
   .typing {
     left: .5rem;
     padding: .1rem .2rem;
-    font-size: .9rem; }
-  .list-item iframe {
-    aspect-ratio: 16/12;
-    width: 100%;
-    margin: 0.9rem 0; } }
+    font-size: .9rem; } }
+
+@keyframes list-item-anime {
+  from {
+    background: #ffcece;
+    transform: translateX(0.5rem) scale(1); } }
 
 @keyframes bulge {
   0% {

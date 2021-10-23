@@ -1,4 +1,11 @@
 
+@keyframes list-item-anime {
+  from {
+    background: rgb(255, 206, 206);
+    transform: translateX(.5rem) scale(1);
+  }
+}
+
 @keyframes bulge {
     0% {
         border-radius: 50%;

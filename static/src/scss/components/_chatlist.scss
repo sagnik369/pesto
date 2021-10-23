@@ -16,14 +16,14 @@
 
 
 .list-item {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     margin: 3rem auto;
-    padding: 0.2rem 1.1rem;
+    padding: 0.2rem 1rem;
     border-radius: 6px;
     max-height: 80vh;
     overflow: auto;
     background: rgb(252, 221, 221);
-    width: 80%;
+    width: 85%;
     transform: translateX(-.5rem) scale(1.05);
       
     & > div > main > div {
@@ -64,6 +64,9 @@
     background: rgb(223, 111, 111);
     text-align: right;
     transform: translateX(.5rem) scale(.95);
+    animation-name: list-item-anime;
+    animation-duration: 1.5s;
+    animation-timing-function: ease;
     
     & footer {
         text-align: left;
