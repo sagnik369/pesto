@@ -3,10 +3,10 @@
     &-container {
         @include centered(0%, 50%);
         position: fixed;
-        box-shadow: 0 0 5rem rgba(198, 198, 198, 0.5);
         z-index: 0;
         padding: 0 0 1.5rem 0;
-        background: rgb(255, 255, 255);
+        background: rgb(241, 246, 255);
+        border: 1px inset rgba(97, 97, 97, 0.1);
         width: 100%;
         max-width: 50rem;
         height: 92vh;
@@ -19,11 +19,12 @@
     font-size: 1.1rem;
     margin: 3rem auto;
     padding: 0.2rem 1rem;
-    border-radius: 6px;
     max-height: 80vh;
     overflow: auto;
-    background: rgb(252, 221, 221);
+    background: rgb(255, 211, 211);
+    border: 1px solid rgba(97, 97, 97, 0.75);
     width: 85%;
+    clip-path: polygon(1% 0, 100% 0%, 99% 100%, 0% 100%);
     transform: translateX(-.5rem) scale(1.05);
       
     & > div > main > div {
@@ -32,6 +33,10 @@
         width: 100%;
         border: 1px solid rgba(97, 97, 97, 0.6);
         border-radius: 5px;
+    }
+
+    & h3 {
+        font-family: $Lxnd;
     }
   
     & img {
@@ -61,7 +66,7 @@
 }
 
 .other-users {
-    background: rgb(223, 111, 111);
+    background: rgb(241, 141, 141);
     text-align: right;
     transform: translateX(.5rem) scale(.95);
     animation-name: list-item-anime;

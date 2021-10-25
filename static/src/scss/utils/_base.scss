@@ -4,6 +4,11 @@
   padding: 0;
   box-sizing: border-box;
   font-family: $Lora;
+
+  &:focus {
+    outline: .15rem groove rgba(0, 86, 139, 0.555);
+    z-index: 1;
+  }
 }
 
 body {
@@ -27,4 +32,8 @@ body {
 
 li {
   list-style-type: none;
+}
+
+button {
+  font-family: $IPSA;
 }

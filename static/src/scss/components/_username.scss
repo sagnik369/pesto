@@ -50,7 +50,7 @@
     &-btn {
         width: 40%;
         height: 2.8rem;
-        background: rgb(41, 218, 135);
+        background: rgb(11, 218, 81);
         border: 1px solid rgba(0, 0, 0, 0.3);
         border-radius: 4px;
         cursor: pointer;
@@ -58,7 +58,7 @@
         margin: 1rem;
 
         &:active {
-            background: rgb(36, 194, 120);
+            background: rgb(7, 160, 58);
         }
     }
 }
@@ -70,7 +70,7 @@
     left: 1.2rem;
     z-index: 2;
     font-size: 1rem;
-    background: #f0ffffe8;
+    background: whitesmoke;
     max-height: 4.5rem;
     padding: .3rem .6rem;
     overflow-y: auto;

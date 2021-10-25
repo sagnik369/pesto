@@ -1,9 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;0,700;1,400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lexend:wght@400&display=swap");
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: "lora", sans-serif; }
+  *:focus {
+    outline: 0.15rem groove rgba(0, 86, 139, 0.555);
+    z-index: 1; }
 
 body {
   overflow-x: hidden;
@@ -22,6 +27,9 @@ body {
 
 li {
   list-style-type: none; }
+
+button {
+  font-family: "IBM Plex Sans Arabic", sans-serif; }
 
 .username {
   position: relative;
@@ -68,14 +76,14 @@ li {
   .username-btn {
     width: 40%;
     height: 2.8rem;
-    background: #29da87;
+    background: #0bda51;
     border: 1px solid rgba(0, 0, 0, 0.3);
     border-radius: 4px;
     cursor: pointer;
     font-size: 1.2rem;
     margin: 1rem; }
     .username-btn:active {
-      background: #24c278; }
+      background: #07a03a; }
 
 .online {
   position: fixed;
@@ -83,7 +91,7 @@ li {
   left: 1.2rem;
   z-index: 2;
   font-size: 1rem;
-  background: #f0ffffe8;
+  background: whitesmoke;
   max-height: 4.5rem;
   padding: .3rem .6rem;
   overflow-y: auto; }
@@ -154,7 +162,7 @@ li {
 
 .change-username {
   padding: .5rem 1rem;
-  background: #2200ff;
+  background: midnightblue;
   border: 1px solid rgba(0, 0, 0, 0.3);
   border-radius: 4px;
   color: white;
@@ -166,7 +174,7 @@ li {
     right: 5px;
     z-index: 4; }
   .change-username:active {
-    background: #1a01bd; }
+    background: #0f0f42; }
 
 .show-fact {
   display: none;
@@ -176,7 +184,8 @@ li {
   right: 5px;
   z-index: 1;
   background-color: whitesmoke;
-  padding: .15rem;
+  padding: 0 .15rem;
+  margin: .2rem 0;
   cursor: pointer;
   font-size: .7rem; }
 
@@ -186,10 +195,10 @@ li {
   left: 50%;
   transform: translate(-50%, 0%);
   position: fixed;
-  box-shadow: 0 0 5rem rgba(198, 198, 198, 0.5);
   z-index: 0;
   padding: 0 0 1.5rem 0;
-  background: white;
+  background: #f1f6ff;
+  border: 1px inset rgba(97, 97, 97, 0.1);
   width: 100%;
   max-width: 50rem;
   height: 92vh;
@@ -199,11 +208,12 @@ li {
   font-size: 1.1rem;
   margin: 3rem auto;
   padding: 0.2rem 1rem;
-  border-radius: 6px;
   max-height: 80vh;
   overflow: auto;
-  background: #fcdddd;
+  background: #ffd3d3;
+  border: 1px solid rgba(97, 97, 97, 0.75);
   width: 85%;
+  clip-path: polygon(1% 0, 100% 0%, 99% 100%, 0% 100%);
   transform: translateX(-0.5rem) scale(1.05); }
   .list-item > div > main > div {
     overflow: auto;
@@ -211,6 +221,8 @@ li {
     width: 100%;
     border: 1px solid rgba(97, 97, 97, 0.6);
     border-radius: 5px; }
+  .list-item h3 {
+    font-family: "Lexend", sans-serif; }
   .list-item img {
     margin: 1.5vw;
     width: 45%;
@@ -229,7 +241,7 @@ li {
     margin: 3px; }
 
 .other-users {
-  background: #df6f6f;
+  background: #f18d8d;
   text-align: right;
   transform: translateX(0.5rem) scale(0.95);
   animation-name: list-item-anime;
@@ -250,7 +262,7 @@ li {
 
 .message {
   width: 80%;
-  background: #f0f0f0;
+  background: rgba(255, 255, 255, 0.9);
   border: 1px solid rgba(0, 0, 0, 0.3);
   border-radius: 4px;
   padding: 0.5rem 1rem;
@@ -267,14 +279,14 @@ li {
 
 .send-btn {
   width: 20%;
-  background: #29da87;
-  border: 1px solid rgba(0, 0, 0, 0.3);
+  background: #0bda51;
+  border: none;
   border-radius: 4px;
   font-size: 1.4rem;
   font-weight: 700;
   cursor: pointer; }
   .send-btn:active {
-    background: #24c278; }
+    background: #07a03a; }
 
 .typing {
   position: fixed;
@@ -366,7 +378,7 @@ li {
 
 @keyframes list-item-anime {
   from {
-    background: #ffcece;
+    background: #ffeaea;
     transform: translateX(0.5rem) scale(1); } }
 
 @keyframes bulge {

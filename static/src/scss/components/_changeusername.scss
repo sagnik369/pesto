@@ -7,7 +7,7 @@
        z-index: 4;
     }
     padding: .5rem 1rem;
-    background: rgb(34, 0, 255);
+    background: midnightblue;
     border: 1px solid rgba(0, 0, 0, 0.3);
     border-radius: 4px;
     color: white;
@@ -15,7 +15,7 @@
     cursor: pointer;
 
     &:active {
-        background: rgb(26, 1, 189);
+        background: rgb(15, 15, 66);
     }
 }
 
@@ -28,7 +28,8 @@
     right: 5px;
     z-index: 1;
     background-color: whitesmoke;
-    padding: .15rem;
+    padding: 0 .15rem;
+    margin: .2rem 0;
     cursor: pointer;
     font-size: .7rem;
 }

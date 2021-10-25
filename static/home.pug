@@ -1,13 +1,21 @@
 doctype html
 head
   meta(charset='utf-8')
-  meta(name='viewport' content='width=device-width, initial-scale=1.0')
-  link(rel='stylesheet' href='./src/css/styles.css' type='text/css')
-  link(rel='icon' href='./src/logo/logo.png' type='x-icon/image')
-  title &Rscr;
+  meta(name='viewport', content='width=device-width, initial-scale=1.0')
+  meta(name='description', content='Instant real-time messaging platform for fast users')
+  link(rel='stylesheet', href='./src/css/styles.css', type='text/css')
+  link(rel='icon', href='./src/logo/logo.png', type='x-icon/image')
+  script(src='https://js.pusher.com/4.0/pusher.min.js', defer='')
+  script(src='./src/javascript/bundled.js', defer='')
+  title Pesto || Short messaging platform
+#typing.typing
+#sending-file.sending-file
+ul#online.online
 section#username-container.username-container
   .username
-    input#username-input.username-input(type='text' placeholder='Enter your username')
+    label.username-label(for='username-input')
+      | Enter your username:
+    input#username-input.username-input(type='text', placeholder='Max. 10 characters allowed', maxlength='10')
     footer#username-warning.username-warning
       small &#x26A0; Enter a username
     button#username-btn.username-btn(type='button')
@@ -15,21 +23,25 @@ section#username-container.username-container
 .change-username-container
   button#change-username.change-username(type='button')
     | Change Username
+button#show-fact.show-fact(type='button') SHOW ME THE FACT!
 section#chat-list-container.chat-list-container
+  #facts.facts
   ul#chat-list.chat-list
+section#additional-inputs-container.additional-inputs-container
+  .additional-inputs
+    label.additional-inputs-labels(for='image')
+      | Enter the image URLs:
+    input#image.image(type='url', placeholder='Add a space between the URLs!')
+    label.additional-inputs-labels(for='video')
+      | Enter the Youtube video URLs:
+    input#video.video(type='url', placeholder='Add a space between the URLs!')
+    footer.additional-inputs-warning
+      small &#x26A0; Only YouTube videos are avaliable
+    input#file-data.file-data(type='file', name='file', multiple='')
+    footer.additional-inputs-warning
+      small &#x26A0; These files are personally sent to me only
+#show-additional-inputs.show-additional-inputs(type='button')
+  | &amp;plus;
 section.message-container
-  section#additional-inputs-container.additional-inputs-container
-    .additional-inputs
-      input#image.image(type='url' placeholder='Enter the image url here')
-      input#video.video(type='url' placeholder='Enter the YouTube video url here')
-      footer.additional-inputs-warning
-        small &#x26A0; Only YouTube videos are avaliable
-      button#close-additional-inputs.close-additional-inputs(type='button')
-        | &Cross;
-  input#message.message(type='text' placeholder='Type here')
+  input#message.message(type='text', placeholder='Type here')
   button#send-btn.send-btn(type='button') Send
-  button#show-additional-inputs.show-additional-inputs(type='button')
-    | &amp;plus;
-// <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-script(src='https://js.pusher.com/4.0/pusher.min.js')
-script(src='./javascript/scripts.js')
