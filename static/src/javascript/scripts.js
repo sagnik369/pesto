@@ -162,7 +162,7 @@ $(document).ready(function () {
 
     let online_temp;
 
-    $("#online")[0].innerHTML = '';
+    $("#online").html("");
     online_users.map(el => {
 
       //Checks if the element is empty or not which happens when a user has not registered yet...

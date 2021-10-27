@@ -11046,6 +11046,14 @@ function personOnline() {
 
   //When this user goes offline then this API sends data to the backend also checking if the user has logged before exiting the page, then only the name is sent to the backend
 
+  //Before unloading the document
+
+  $(window).on("beforeunload", function() {
+    $.post("/offline", { user });
+  });
+
+  //Before changing visibility
+
   $(document).on("visibilitychange", function() {
     
     if (document.visibilityState === 'hidden') {
@@ -11056,7 +11064,7 @@ function personOnline() {
 
       window.localStorage.setItem("text", JSON.stringify(text));
 
-      if(user) $.post("/offline", { user });
+      if(user) $.post("/offline", { user });      
     } 
     
     else {
@@ -11445,7 +11453,7 @@ $(document).ready(function () {
 
     let online_temp;
 
-    $("#online")[0].innerHTML = '';
+    $("#online").html("");
     online_users.map(el => {
 
       //Checks if the element is empty or not which happens when a user has not registered yet...
