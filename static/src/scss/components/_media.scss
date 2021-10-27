@@ -56,10 +56,11 @@
       left: .5rem;
     }
     .message {
-      width: calc(100% - 5rem);
+      padding: 0.5rem 5.5rem 0.5rem 1rem;
     }
     .send-btn {
-      width: 5rem;
+      right: .5rem;
+      width: 4.5rem;
       font-size: 1.1rem;
     }
 

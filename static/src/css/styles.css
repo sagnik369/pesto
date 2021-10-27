@@ -7,8 +7,7 @@
   box-sizing: border-box;
   font-family: "lora", sans-serif; }
   *:focus {
-    outline: 0.15rem groove rgba(0, 86, 139, 0.555);
-    z-index: 1; }
+    outline: 0.15rem groove rgba(0, 86, 139, 0.555); }
 
 body {
   overflow-x: hidden;
@@ -19,7 +18,7 @@ body {
   height: 5px; }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #a469db;
+  background-color: #6a5aff;
   border-radius: 10px; }
 
 ::-webkit-scrollbar-track {
@@ -52,13 +51,13 @@ button {
     z-index: 5;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.4);
     backdrop-filter: blur(10px); }
   .username-input {
     width: 90%;
     height: 3rem;
     padding: 0.5rem 1rem;
-    border: 1px solid rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(0, 0, 0, 0.4);
     border-radius: 4px;
     font-size: 1.1rem;
     margin: 1rem; }
@@ -77,13 +76,13 @@ button {
     width: 40%;
     height: 2.8rem;
     background: #0bda51;
-    border: 1px solid rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(0, 0, 0, 0.4);
     border-radius: 4px;
     cursor: pointer;
     font-size: 1.2rem;
     margin: 1rem; }
     .username-btn:active {
-      background: #07a03a; }
+      background: #079136; }
 
 .online {
   position: fixed;
@@ -136,7 +135,7 @@ button {
   width: 90%;
   height: 2.5rem;
   padding: 0.3rem 1rem;
-  border: 1px solid rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(0, 0, 0, 0.4);
   border-radius: 4px;
   font-size: 1.1rem;
   margin: 0 .2rem; }
@@ -163,7 +162,7 @@ button {
 .change-username {
   padding: .5rem 1rem;
   background: midnightblue;
-  border: 1px solid rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(0, 0, 0, 0.4);
   border-radius: 4px;
   color: white;
   font-size: 1rem;
@@ -174,13 +173,13 @@ button {
     right: 5px;
     z-index: 4; }
   .change-username:active {
-    background: #0f0f42; }
+    background: #101046; }
 
 .show-fact {
   display: none;
   position: fixed;
   top: 3rem;
-  border: 1px solid rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(0, 0, 0, 0.4);
   right: 5px;
   z-index: 1;
   background-color: whitesmoke;
@@ -261,11 +260,11 @@ button {
   text-align: center; }
 
 .message {
-  width: 80%;
+  width: 100%;
   background: rgba(255, 255, 255, 0.9);
-  border: 1px solid rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(0, 0, 0, 0.4);
   border-radius: 4px;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 12.5% 0.5rem 1rem;
   font-size: 1.1rem; }
   .message-container {
     display: flex;
@@ -278,15 +277,20 @@ button {
     z-index: 2; }
 
 .send-btn {
-  width: 20%;
+  position: absolute;
+  bottom: 0;
+  right: 1rem;
+  transform: translateY(-17.5%);
+  width: 10%;
+  height: 75%;
   background: #0bda51;
   border: none;
   border-radius: 4px;
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   font-weight: 700;
   cursor: pointer; }
   .send-btn:active {
-    background: #07a03a; }
+    background: #079136; }
 
 .typing {
   position: fixed;
@@ -316,7 +320,7 @@ button {
   justify-content: center;
   align-items: center; }
   .show-additional-inputs:active {
-    background: #655bbe; }
+    background: #5341ff; }
 
 @media (max-width: 720px) {
   .list-item {
@@ -362,9 +366,10 @@ button {
   .sending-file {
     left: .5rem; }
   .message {
-    width: calc(100% - 5rem); }
+    padding: 0.5rem 5.5rem 0.5rem 1rem; }
   .send-btn {
-    width: 5rem;
+    right: .5rem;
+    width: 4.5rem;
     font-size: 1.1rem; }
   .online {
     left: .5rem;

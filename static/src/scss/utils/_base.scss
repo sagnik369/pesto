@@ -7,7 +7,6 @@
 
   &:focus {
     outline: .15rem groove rgba(0, 86, 139, 0.555);
-    z-index: 1;
   }
 }
 
@@ -22,7 +21,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: rgb(164, 105, 219);
+  background-color: darken($violet, 10%);
   border-radius: 10px;
 }
 
