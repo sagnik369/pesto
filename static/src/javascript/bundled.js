@@ -10941,7 +10941,7 @@ function loadMessages() {
 
     //iterates through the responses
 
-    res.allData.forEach((message) => {
+    res.forEach((message) => {
 
       //hides random facts
 
@@ -10957,8 +10957,9 @@ function loadMessages() {
                                     </header>
                                     <main>
                                       <div>
-                                        <h3>
+                                        <p>
                                           ${message.text}                                        </h3>
+                                        </p>
                                       </div>
                                     </main>
                                     <footer>
@@ -11013,19 +11014,7 @@ function loadMessages() {
       $("#show-fact").show();
     });
 
-    //For displaying the users who are online
-
-    let online_temp;
-
-    res.online_users.map(el => {
-
-      //Checks if the element is empty or not which happens when a user has not registered yet...
-
-      if(el) {
-        online_temp = $("<li>").html(el);
-        $("#online").append(online_temp[0]);
-      }
-    });
+    //For dz
   });
 }
 
@@ -11040,9 +11029,11 @@ function personOnline() {
 
   let user = JSON.parse(window.localStorage.getItem("user"));
 
-  //For sending data about this user online status
+  //For sending data about this user online status after 2000ms
 
-  if(user) $.post("/online", { user });
+  setTimeout(() => {
+    if(user) $.post("/online", { user });
+  }, 2000);
 
   //When this user goes offline then this API sends data to the backend also checking if the user has logged before exiting the page, then only the name is sent to the backend
 
@@ -11085,7 +11076,7 @@ function postMessage() {
   
   //Typing indicator set
 
-  $("#message").keydown(function() {
+  $("#message").on("input", function() {
     $.post("/typing", { username });
   });
 
@@ -11359,9 +11350,9 @@ $(document).ready(function () {
                                     </header>
                                     <main>
                                       <div>
-                                        <h3>
+                                        <p>
                                           ${message.text}
-                                        </h3>
+                                        </p>
                                       </div>
                                     </main>
                                     <footer>
@@ -11450,7 +11441,6 @@ $(document).ready(function () {
   //Gets data from the backend when a user comes online
   
   function onPersonOnline(online_users) {
-
     let online_temp;
 
     $("#online").html("");

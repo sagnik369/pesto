@@ -68,9 +68,9 @@ $(document).ready(function () {
                                     </header>
                                     <main>
                                       <div>
-                                        <h3>
+                                        <p>
                                           ${message.text}
-                                        </h3>
+                                        </p>
                                       </div>
                                     </main>
                                     <footer>
@@ -159,7 +159,6 @@ $(document).ready(function () {
   //Gets data from the backend when a user comes online
   
   function onPersonOnline(online_users) {
-
     let online_temp;
 
     $("#online").html("");

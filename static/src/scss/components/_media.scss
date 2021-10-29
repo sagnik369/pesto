@@ -2,10 +2,10 @@
 @media (max-width: 720px) {
     .list-item {
       font-size: .9rem;     
-      & footer {
+      footer {
         font-size: .6rem;     
       }
-      & iframe {
+      iframe {
         aspect-ratio: 16/12;
         width: 100%;
         margin: 0.9rem 0;

@@ -8,7 +8,7 @@ function postMessage() {
   
   //Typing indicator set
 
-  $("#message").keydown(function() {
+  $("#message").on("input", function() {
     $.post("/typing", { username });
   });
 

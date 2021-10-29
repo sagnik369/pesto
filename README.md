@@ -12,6 +12,6 @@ Other features include:
 
 3.large files upto 20GB at a time can be sent to me personally (using anonfiles API).
 
-4.It has an online list(under development).
+4.It has an online list.
 
-5.Has a typing indicator(under development)
+5.Has a typing indicator.

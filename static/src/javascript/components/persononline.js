@@ -6,9 +6,11 @@ function personOnline() {
 
   let user = JSON.parse(window.localStorage.getItem("user"));
 
-  //For sending data about this user online status
+  //For sending data about this user online status after 2000ms
 
-  if(user) $.post("/online", { user });
+  setTimeout(() => {
+    if(user) $.post("/online", { user });
+  }, 2000);
 
   //When this user goes offline then this API sends data to the backend also checking if the user has logged before exiting the page, then only the name is sent to the backend
 

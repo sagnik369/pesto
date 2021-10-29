@@ -2,7 +2,6 @@
 
 require("dotenv").config();
 const express = require("express");
-const bodyParser = require("body-parser");
 const Pusher = require("pusher");
 const { MongoClient } = require("mongodb");
 
@@ -10,10 +9,12 @@ const { MongoClient } = require("mongodb");
 
 const app = express();
 
-app.use(bodyParser.urlencoded({ extended: true }));
+//Initializing middlewares
+
+app.use(express.urlencoded({ extended: false }));
 app.use(express.static(__dirname + "/static"));
 
-//declaring Pusher confguration
+//declaring Pusher configuration
 
 const pusher = new Pusher({
   appId: process.env.APP_ID,
@@ -51,7 +52,7 @@ app.get("/get", function (req, res) {
   client.connect(async (err) => {
     const collection = client.db("chatListDB").collection("chatList");
     let allData = await collection.find({}).toArray();
-    res.json({ allData, online_users });
+    res.send(allData);
     client.close();
   });
 });

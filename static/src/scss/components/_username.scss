@@ -21,6 +21,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    animation: show-modal .3s ease-in;
 
     &-input{
         width: 90%;
