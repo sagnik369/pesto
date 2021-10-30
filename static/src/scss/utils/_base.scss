@@ -1,10 +1,11 @@
 
-* {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-  font-family: $Lxnd;
-
+  box-sizing: inherit;
+  
   &:focus {
     outline: .15rem groove rgba(156, 213, 248, 0.5);
   }
@@ -13,6 +14,8 @@
 body {
   overflow-x: hidden;
   background: whitesmoke;
+  box-sizing: border-box;
+  font-family: $Lxnd;
 }
 
 ::-webkit-scrollbar {

@@ -4,3 +4,66 @@
     left: $left;
     transform: translate(-$left, -$top);
 }
+
+
+@mixin btn-confirm {
+    background: $light-green;
+    border: 1px solid $light-black;
+    font-size: 1.35rem;
+    border-radius: 4px;
+    cursor: pointer;
+
+
+    &:active {
+        background: darken($light-green, 15%);
+    }
+}
+
+
+@mixin modal-template {
+
+    &-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: $light-black;
+    }
+
+    @include centered(50%, 50%);
+    width: 95%;
+    max-width: 31rem;
+    background-color: ghostwhite;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    animation: show-modal .3s ease-in;
+
+    
+    &-warning, &-labels {
+        display: block;
+        width: 90%;
+        font-size: .85rem;
+        margin: .8rem;
+    }
+    
+    &-warning {
+        color: red;
+    }
+
+    &-labels {
+        font-size: 1.1rem;
+    }
+}
+
+
+@mixin modal-inputs {
+    width: 90%;
+    padding: 0.3rem 1rem;
+    border: 1px solid $light-black;
+    border-radius: 4px;
+    font-size: 1.1rem;
+}

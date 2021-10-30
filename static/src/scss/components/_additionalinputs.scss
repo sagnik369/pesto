@@ -2,61 +2,22 @@
 .additional-inputs {
     &-container {
         display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
         z-index: 2;
-        width: 100vw;
-        height: 100vh;
-        background-color: $light-black;
     }
-
-    @include centered(50%, 50%);
-    width: 95%;
-    max-width: 31rem;
+    
     height: 22rem;
-    background-color: ghostwhite;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     z-index: 20;
-    animation: show-modal .3s ease-in;
-
-
-    &-warning, &-labels {
-        display: block;
-        width: 90%;
-        font-size: .85rem;
-        margin: .8rem;
-    }
-
-    &-warning {
-        color: red;
-    }
-
-    &-labels {
-        font-size: 1rem;
-    }
+    @include modal-template;
 }
 
 .image,
 .video,
 .file-data {
-  width: 90%;
   height: 2.5rem;
-  padding: 0.3rem 1rem;
-  border: 1px solid $light-black;
-  border-radius: 4px;
-  font-size: 1.1rem;
   margin: 0 .2rem;
+  cursor: pointer;
+  @include modal-inputs;
 }
-
-.file-data:hover {
-    cursor: pointer;
-}
-
 
 .sending-file {
     position: fixed;

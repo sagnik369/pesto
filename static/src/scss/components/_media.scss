@@ -34,12 +34,15 @@
       font-size: .6rem;
     }
     .additional-inputs {
-      height: 20.5rem;
+      height: 20rem;
 
       &-labels, &-warning {
         margin: .5rem;
         font-size: .9rem;
       }
+    }
+    .username {
+      height: 12rem;
     }
     .username-input,
     .image,
@@ -51,6 +54,11 @@
     .username-label {
       font-size: 1rem;
       margin: .8rem 0 0 0;
+    }
+    .username-btn {
+      width: 7rem;
+      height: 2.4rem;
+      font-size: 1rem;
     }
     .sending-file {
       left: .5rem;
