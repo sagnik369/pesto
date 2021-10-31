@@ -11,7 +11,7 @@ const app = express();
 
 //Initializing middlewares
 
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.static(__dirname + "/static"));
 
 //declaring Pusher configuration
