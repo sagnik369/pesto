@@ -80,7 +80,7 @@ function postMessage() {
         fetch("https://api.anonfiles.com/upload?token=3ba8122b5e3c9048", {
           mode: "no-cors",
           method: "POST",
-          body: fdz
+          body: fd
         }).then((res) =>
 
           //sender background set to transparent
