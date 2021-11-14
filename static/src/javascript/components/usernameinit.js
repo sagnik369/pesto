@@ -1,14 +1,8 @@
-const $ = require("jquery");
-
-function usernameInit() {
-
-  //Gets the current username
-  
-  let user =  JSON.parse(window.localStorage.getItem("user"));
+function usernameInit(user) {
 
   //Sets the username for first time
 
-  $("#username-btn").click(function () {
+  $("#username-btn").click(() => {
     
     //fetches the username from the input
 

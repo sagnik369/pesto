@@ -31,13 +31,13 @@
 }
 
 .typing {
+    display: none;
     position: fixed;
     top: .5rem;
     left: 1.2rem;
     z-index: 5;
     padding: .3rem .6rem;
-    background: whitesmoke;
-    opacity: 0;
+    background: rgba(245, 245, 245, 0.8);
     border-radius: 3px;
     font-size: 1.2rem;
 }

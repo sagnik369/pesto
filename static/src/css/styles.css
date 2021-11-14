@@ -152,11 +152,12 @@ button {
   font-size: 1.1rem; }
 
 .sending-file {
+  display: none;
   position: fixed;
   top: 3.2rem;
   left: 1.2rem;
   z-index: 5;
-  background: transparent;
+  background: crimson;
   width: 1rem;
   height: 1rem;
   border-radius: 50%;
@@ -303,13 +304,13 @@ button {
     background: #079136; }
 
 .typing {
+  display: none;
   position: fixed;
   top: .5rem;
   left: 1.2rem;
   z-index: 5;
   padding: .3rem .6rem;
-  background: whitesmoke;
-  opacity: 0;
+  background: rgba(245, 245, 245, 0.8);
   border-radius: 3px;
   font-size: 1.2rem; }
 

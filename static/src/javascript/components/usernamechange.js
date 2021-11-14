@@ -1,11 +1,9 @@
-const $ = require("jquery");
-
-function usernameChange() {
+function usernameChange(user) {
 
   //Changes the username
 
-  $("#change-username").click(function () {
-    let user = JSON.parse(window.localStorage.getItem("user"));
+  $("#change-username").click(() => {
+
     $("#username-container").show();
 
     //displays the current username in the input field
@@ -15,10 +13,9 @@ function usernameChange() {
 
   //warning message toggles between hide and show when wrong username is typed
 
-  $("#username-input").keyup(function () {
+  $("#username-input").keyup(() => {
     let temp_username = $.trim($(this).val());
-    if (temp_username) $("#username-warning").hide();
-    else $("#username-warning").show();
+    temp_username? $("#username-warning").hide() : $("#username-warning").show();
   });
 }
 

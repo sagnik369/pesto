@@ -60,7 +60,10 @@ app.get("/get", function (req, res) {
 //Route when a user comes online
 
 app.post("/online", function (req, res) {
+
   var username = req.body.user;
+
+  console.log(username, "online");
 
   //Checks if the user has refreshed the page or not
   //Sends the data to the other clients only if the user was not present in the online_users list
@@ -78,6 +81,8 @@ app.post("/offline", function (req, res) {
 
   var username = req.body.user;
 
+  console.log(username, "offline");
+
   //Does not check if the user has refreshed the page but sends the data anyway which will be overwritten in client side
   //Filters the user who is attempting to leave the page
 
@@ -91,7 +96,7 @@ app.post("/offline", function (req, res) {
 //Typing indicator route
 
 app.post("/typing", function (req, res) {
-  var username = req.body.username;
+  var username = req.body.user;
 
   pusher.trigger("chat-room", "person-typing", username);
   res.sendStatus(200);

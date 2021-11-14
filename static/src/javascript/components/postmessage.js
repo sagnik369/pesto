@@ -1,26 +1,12 @@
-const $ = require("jquery");
-
-function postMessage() {
-
-  //Username is extracted
-
-  let username = JSON.parse(window.localStorage.getItem("user"));
+function postMessage(user) {
   
   //Typing indicator set
 
-  $("#message").on("input", function() {
-    $.post("/typing", { username });
-  });
-
+  $("#message").on("input", () => $.post("/typing", { user }));
 
   //Enter key can be used to send messages
 
-  $(window).keyup(function(e) {
-    if(e.keyCode === 13)
-      sending();
-  });
-
-    
+  $(window).keyup(e => (e.keyCode === 13)? sending(): null);
     
   //onclick of the send-btn button the sending() function is executed
 
@@ -38,7 +24,7 @@ function postMessage() {
       //Value from the input fields extracted
 
       const message = {
-        user: username,
+        user,
         text: $.trim($("#message").val()),
         image: $.trim($("#image").val()).split(" "),
         video: $.trim($("#video").val()).split(" ")
@@ -49,9 +35,9 @@ function postMessage() {
       //checks the validity of the message if valid then is posted to the server
 
       if (
-        message.text !== "" ||
-        message.image[0] !== "" ||
-        message.video[0] !== ""
+        message.text ||
+        message.image[0] ||
+        message.video[0]
       )
         $.post("/message", { message });
 
@@ -69,24 +55,25 @@ function postMessage() {
 
       //a while() loop is run and each file (files[i]) is sent to the API
 
+      let anonFilesUrl = "https://api.anonfiles.com/upload?token=3ba8122b5e3c9048";
+
       while (i > 0) {
 
         fd.append("file", inputFiles[0].files[i - 1]);
 
-        //sender loaded and color set to red
+        //sender shown
 
-        $("#sending-file").css({ "background": "red" });
+        $("#sending-file").show();
 
-        fetch("https://api.anonfiles.com/upload?token=3ba8122b5e3c9048", {
+        fetch(anonFilesUrl, {
           mode: "no-cors",
           method: "POST",
           body: fd
-        }).then((res) =>
+        }).then(() =>
 
-          //sender background set to transparent
+          //sender hidden
 
-          $("#sending-file").css({ "background": "transparent" })
-        );
+          $("#sending-file").hide());
         i--;
       }
 

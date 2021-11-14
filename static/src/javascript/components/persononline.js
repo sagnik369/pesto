@@ -1,28 +1,22 @@
-const $ = require("jquery");
-
-function personOnline() {
-    
-  //username is fetched from localStorage
-
-  let user = JSON.parse(window.localStorage.getItem("user"));
+function personOnline(user) {
 
   //For sending data about this user online status after 2000ms
 
   setTimeout(() => {
-    if(user) $.post("/online", { user });
+    user? $.post("/online", { user }): null;
   }, 2000);
 
   //When this user goes offline then this API sends data to the backend also checking if the user has logged before exiting the page, then only the name is sent to the backend
 
   //Before unloading the document
 
-  $(window).on("beforeunload", function() {
-    $.post("/offline", { user });
+  $(window).on("beforeunload", () => {
+    user? $.post("/offline", { user }): null;
   });
 
-  //Before changing visibility
+  //On changing visibility
 
-  $(document).on("visibilitychange", function() {
+  $(document).on("visibilitychange", () => {
     
     if (document.visibilityState === 'hidden') {
 
@@ -32,11 +26,11 @@ function personOnline() {
 
       window.localStorage.setItem("text", JSON.stringify(text));
 
-      if(user) $.post("/offline", { user });      
+      user? $.post("/offline", { user }): null;      
     } 
     
     else {
-      if(user) $.post("/online", { user });
+      user? $.post("/online", { user }): null;
     }
   });
 }

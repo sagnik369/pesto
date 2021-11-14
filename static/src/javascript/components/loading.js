@@ -1,5 +1,3 @@
-const $ = require("jquery");
-
 function loading() {
 
   //initializes the username with user from localStorage if avaliable
@@ -13,6 +11,8 @@ function loading() {
   let text = JSON.parse(window.localStorage.getItem("text"));
 
   if (text) $("#message").val(text);
+
+  return user;
 }
 
 module.exports = loading;
